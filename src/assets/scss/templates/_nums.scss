@@ -1,1 +1,28 @@
 @charset "UTF-8";
+.nums{
+    display: flex;
+    justify-content: center;
+    >.num-win{
+        margin-top:2rem;
+        >.title-medium{
+            text-align: center;
+        }
+    }
+    >.num-bonus{
+        position:relative;
+        margin-top:2rem;
+        margin-left:2rem;
+
+        >.title-medium{
+            text-align: center;
+        }
+        &::after{
+            position: absolute;
+            display: block;
+            left: -1.5rem;
+            top: 4.8rem;
+            content:'+';
+            @include text-H2-Bold(color-text-secondary)
+        }
+    }
+}
