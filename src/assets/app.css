@@ -372,7 +372,7 @@ h4.title-big {
   line-height: 136.364%;
   font-weight: 700;
   font-family: "Pretendard";
-  color: rgb(220, 220, 220);
+  color: rgb(255, 255, 255);
 }
 body[data-color-mode=dark] h4.title-big {
   color: rgb(22, 22, 22);
@@ -394,7 +394,7 @@ h4.title-medium {
   line-height: 140%;
   font-weight: 700;
   font-family: "Pretendard";
-  color: rgb(220, 220, 220);
+  color: rgb(255, 255, 255);
 }
 body[data-color-mode=dark] h4.title-medium {
   color: rgb(22, 22, 22);
@@ -555,7 +555,7 @@ body[data-color-mode=dark] .footer-area .copyright-area p {
   line-height: 140%;
   font-weight: 400;
   font-family: "Pretendard";
-  color: rgb(220, 220, 220);
+  color: rgb(255, 255, 255);
   line-height: 3.8rem;
 }
 body[data-color-mode=dark] .btn-gnb {
@@ -579,7 +579,7 @@ body[data-color-mode=dark] .btn-primary {
   line-height: 1.429;
   font-weight: 600;
   font-family: "Pretendard";
-  color: rgb(220, 220, 220);
+  color: rgb(255, 255, 255);
 }
 body[data-color-mode=dark] .btn-small {
   color: rgb(22, 22, 22);
@@ -592,7 +592,7 @@ body[data-color-mode=dark] .btn-small {
   line-height: 140%;
   font-weight: 600;
   font-family: "Pretendard";
-  color: rgb(220, 220, 220);
+  color: rgb(255, 255, 255);
 }
 body[data-color-mode=dark] .btn-large {
   color: rgb(22, 22, 22);
@@ -697,6 +697,91 @@ body[data-color-mode=dark] .popup-container .popup-area .popup-overlay {
   background-color: rgba(255, 255, 255, 0.3);
 }
 
+.checkbox-area input:checked + label::after {
+  position: absolute;
+  content: "";
+  display: block;
+  top: 0;
+  left: 0;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  border: 0.6rem solid transparent;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-color: rgb(43, 43, 43);
+}
+body[data-color-mode=dark] .checkbox-area input:checked + label::after {
+  border-color: rgb(200, 200, 200);
+}
+
+.checkbox-area label {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  font-size: 1.5rem;
+  line-height: 140%;
+  font-weight: 400;
+  font-family: "Pretendard";
+  color: rgb(255, 255, 255);
+  line-height: 3.8rem;
+}
+body[data-color-mode=dark] .checkbox-area label {
+  color: rgb(22, 22, 22);
+}
+
+.checkbox .ball-645 {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-shadow: 1px 1px 2px #222;
+}
+.checkbox .ball-645.ball-1 {
+  background-color: rgb(251, 196, 0);
+}
+body[data-color-mode=dark] .checkbox .ball-645.ball-1 {
+  background-color: rgb(251, 196, 0);
+}
+
+.checkbox .ball-645.ball-2 {
+  background-color: rgb(0, 179, 255);
+}
+body[data-color-mode=dark] .checkbox .ball-645.ball-2 {
+  background-color: rgb(0, 179, 255);
+}
+
+.checkbox .ball-645.ball-3 {
+  background-color: rgb(241, 27, 27);
+}
+body[data-color-mode=dark] .checkbox .ball-645.ball-3 {
+  background-color: rgb(241, 27, 27);
+}
+
+.checkbox .ball-645.ball-4 {
+  background-color: rgb(127, 127, 127);
+}
+body[data-color-mode=dark] .checkbox .ball-645.ball-4 {
+  background-color: rgb(127, 127, 127);
+}
+
+.checkbox .ball-645.ball-5 {
+  background-color: rgb(8, 187, 38);
+}
+body[data-color-mode=dark] .checkbox .ball-645.ball-5 {
+  background-color: rgb(8, 187, 38);
+}
+
 .title-h3 span {
   font-size: 2.2rem;
   line-height: 136.364%;
@@ -714,19 +799,30 @@ body[data-color-mode=dark] .title-h3 span {
   background-color: #f5f5f5;
 }
 
+.box.box-round-bg {
+  min-height: 6rem;
+  padding: 1rem;
+  border-radius: 2rem;
+  background-color: rgb(255, 255, 255);
+}
+body[data-color-mode=dark] .box.box-round-bg {
+  background-color: rgb(50, 50, 50);
+}
+
 .ball-area {
   display: block;
   margin: 0 auto;
-  margin-top: 2rem;
 }
 .ball-area > ul.ball-list {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  gap: 0.5rem;
+  gap: 1rem;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 .ball-area > ul.ball-list > li {
   display: block;
@@ -749,7 +845,7 @@ body[data-color-mode=dark] .title-h3 span {
   line-height: 140%;
   font-weight: 400;
   font-family: "Pretendard";
-  color: rgb(220, 220, 220);
+  color: rgb(255, 255, 255);
   text-shadow: 1px 1px 2px #222;
 }
 body[data-color-mode=dark] .ball-645 {
@@ -778,10 +874,10 @@ body[data-color-mode=dark] .ball-3 {
 }
 
 .ball-4 {
-  background-color: rgb(87, 87, 87);
+  background-color: rgb(127, 127, 127);
 }
 body[data-color-mode=dark] .ball-4 {
-  background-color: rgb(87, 87, 87);
+  background-color: rgb(127, 127, 127);
 }
 
 .ball-5 {

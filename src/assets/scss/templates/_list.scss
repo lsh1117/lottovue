@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+.list{
+    &-basic{
+        width:auto;
+        display: flex;
+        justify-content: center;
+    }
+}
