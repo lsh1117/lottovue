@@ -20,8 +20,12 @@
 				</div>
 			</div>
 		</div>
+		<div class="message-error-area" v-if="isMaxSelection">
+			<p>
+				<span class="message-error">최대 <strong>{{ maxSelection }}</strong> 개의 번호만 선택할 수 있습니다.</span>
+			</p>
+		</div>
 		<div class="btn-area btn-area-center">
-			<p v-if="isMaxSelection" class="error-message">최대 {{ maxSelection }}개의 번호만 선택할 수 있습니다.</p>
 			<button class="btn-primary btn-small" @click="onConfirmHandler">확인</button>
 		</div>
 	</div>
@@ -113,11 +117,9 @@
 </script>
 
 <style scoped>
-	.error-message {
-		color: red;
-		font-size: 0.9rem;
+	.message-error-area {
 		text-align: center;
-		margin-bottom: 10px;
+		margin-top:20px;
 	}
 
 </style>

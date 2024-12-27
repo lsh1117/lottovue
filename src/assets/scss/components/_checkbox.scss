@@ -20,12 +20,23 @@
                     
                 }
             }
+            &:disabled{
+                &+label{
+
+                    @include themeProperty(background-color, color-ball-disabled);
+                    &::after{
+                        @include themeProperty(background-color, color-ball-disabled);
+                    }
+                    
+                }
+            }
         }
         label{
             position:relative;
             display: block;
             width:100%;
             height:100%;
+            border-radius: 50%;
             text-align: center;
             @include text-B1-Regular(color-text-primary);
             line-height: 3.8rem;

@@ -7,9 +7,11 @@
 					<div class="ball-area">
 						<ul class="ball-list">
 							<li class="ball-item" v-for="number in numbers" :key="number">
-								<!--<span class="ball-645" :class="'ball-'+getGroup(number)">{{ number }}</span>-->
-								<div class="checkbox-area ball-645" :class="'ball-'+getGroup(number)">
-									<input  type="checkbox"  :id="'ball-' + number"  :value="number"  v-model="selectedNumbers" @change="onCheckedHandler" /> 
+								<div class="checkbox-area ball-645" :class="'ball-' + getGroup(number)">
+									<input type="checkbox" :id="'ball-' + number" :value="number"
+										v-model="selectedNumbers"
+										:disabled="!selectedNumbers.includes(number) && selectedNumbers.length >= maxSelection"
+										@change="onCheckedHandler" />
 									<label :for="'ball-' + number">{{ number }}</label>
 								</div>
 							</li>
@@ -17,7 +19,11 @@
 					</div>
 				</div>
 			</div>
-			
+		</div>
+		<div class="message-error-area" v-if="isMaxSelection">
+			<p>
+				<span class="message-error">최대 <strong>{{ maxSelection }}</strong> 개의 번호만 선택할 수 있습니다.</span>
+			</p>
 		</div>
 		<div class="btn-area btn-area-center">
 			<button class="btn-primary btn-small" @click="onConfirmHandler">확인</button>
@@ -26,58 +32,94 @@
 </template>
 
 <script setup>
-	import { onMounted, ref } from 'vue';
-	import { useExceptionStore } from "@/stores/ExceptionStore";
+	import {
+		onMounted,
+		ref,
+		computed
+	} from "vue";
+	import {
+		useExceptionStore
+	} from "@/stores/ExceptionStore";
+
+	// Emit 이벤트 정의
 	const emit = defineEmits(["close"]);
 
 	// Pinia store 가져오기
-	const exceptionStore = useExceptionStore();
+	const exceptioniStore = useExceptionStore();
 
+	// Prop 정의
 	const props = defineProps({
-		onConfirm:{
+		onConfirm: {
 			type: Function,
-			default: null
+			default: null,
 		},
-	})
-	
+	});
 
 	// 번호 목록 생성 (1 ~ 45)
-	const numbers = Array.from({ length: 45 }, (_, i) => i + 1);
+	const numbers = Array.from({
+		length: 45
+	}, (_, i) => i + 1);
 
 	// 선택된 번호를 저장하는 상태
 	let selectedNumbers = ref([]);
 
+	// 최대 선택 가능한 개수
+	const maxSelection = 38;
+
+	// 최대 선택 제한 여부
+	const isMaxSelection = computed(() => selectedNumbers.value.length >= maxSelection);
+
+	// Mounted 시 store의 번호를 초기화
 	onMounted(() => {
-		selectedNumbers.value = [...exceptionStore.numbers];
+		selectedNumbers.value = [...exceptioniStore.numbers];
 	});
 
+	// 번호 그룹 계산 함수
 	function getGroup(n) {
-		// (n - 1)을 10으로 나눈 몫에 1을 더함
 		return Math.floor((n - 1) / 10) + 1;
 	}
 
-	function onCheckedHandler(e){
-		const _number = e.target.value;
+	// 체크박스 선택 이벤트 핸들러
+	function onCheckedHandler(e) {
+        /*
+		const number = parseInt(e.target.value, 10);
+		const isChecked = e.target.checked;
 
-		// if(e.target.checked){
-		// 	selectedNumbers.push(_number);
-		// }else{
-		// 	const _index = selectedNumbers.indexOf(_number);
-		// 	if (_index !== -1) {
-		// 		// 인덱스를 기준으로 해당 요소 삭제
-		// 		selectedNumbers.splice(_index, 1);
-		// 	}
-		// }
+		if (isChecked) {
+			// 번호 추가
+			if (selectedNumbers.value.length < maxSelection) {
+				selectedNumbers.value.push(number);
+			}
+		} else {
+			// 번호 제거
+			const index = selectedNumbers.value.indexOf(number);
+			if (index !== -1) {
+				selectedNumbers.value.splice(index, 1);
+			}
+		}
+            */
 	}
 
-	function onConfirmHandler(){
-		exceptionStore.setNumbers(selectedNumbers.value); // store에 선택된 번호 저장
-		if(props.onConfirm){
+	// 확인 버튼 클릭 핸들러
+	function onConfirmHandler() {
+		// 선택된 번호를 store에 저장
+		exceptioniStore.setNumbers(selectedNumbers.value);
+
+		// Prop의 onConfirm 함수 호출
+		if (props.onConfirm) {
 			props.onConfirm();
 		}
-		emit("close")
+
+		// 팝업 닫기 이벤트 emit
+		emit("close");
 	}
 
-	
-
 </script>
+
+<style scoped>
+	.message-error-area {
+		text-align: center;
+		margin-top:20px;
+	}
+
+</style>

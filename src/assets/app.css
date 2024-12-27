@@ -400,6 +400,39 @@ body[data-color-mode=dark] h4.title-medium {
   color: rgb(22, 22, 22);
 }
 
+label.label-big {
+  font-size: 2.2rem;
+  line-height: 136.364%;
+  font-weight: 700;
+  font-family: "Pretendard";
+  color: rgb(255, 255, 255);
+}
+body[data-color-mode=dark] label.label-big {
+  color: rgb(22, 22, 22);
+}
+
+label.label-big strong {
+  font-size: 2.2rem;
+  line-height: 136.364%;
+  font-weight: 700;
+  font-family: "Pretendard";
+  color: rgb(8, 113, 243);
+}
+body[data-color-mode=dark] label.label-big strong {
+  color: rgb(57, 150, 243);
+}
+
+label.label-medium {
+  font-size: 2rem;
+  line-height: 140%;
+  font-weight: 700;
+  font-family: "Pretendard";
+  color: rgb(255, 255, 255);
+}
+body[data-color-mode=dark] label.label-medium {
+  color: rgb(22, 22, 22);
+}
+
 .text-description-medium {
   font-size: 1.3rem;
   line-height: 1.385;
@@ -427,11 +460,15 @@ body[data-color-mode=dark] .text-description-medium {
   left: 0;
   width: 100%;
   z-index: 500;
+  background-color: rgb(24, 24, 24);
+}
+body[data-color-mode=dark] .fixed-bottom {
+  background-color: rgb(1, 10, 19);
 }
 
 /* layout */
 body {
-  background-color: rgb(31, 31, 31);
+  background-color: rgb(51, 51, 51);
 }
 body[data-color-mode=dark] body {
   background-color: rgb(255, 255, 255);
@@ -507,10 +544,15 @@ body[data-color-mode=dark] .header-area .gnb ul.gnb-list li.gnb-item {
 .header-area .gnb ul.gnb-list li.gnb-item > .btn-gnb {
   text-align: center;
 }
+.header-area .gnb ul.gnb-list li.gnb-item > .btn-gnb.on {
+  background-color: rgb(51, 51, 51);
+}
+body[data-color-mode=dark] .header-area .gnb ul.gnb-list li.gnb-item > .btn-gnb.on {
+  background-color: rgb(255, 255, 255);
+}
 
 .main-area {
-  padding: 0 2rem;
-  padding-top: 8rem;
+  padding: 8rem 2rem;
 }
 
 .footer-area {
@@ -715,11 +757,26 @@ body[data-color-mode=dark] .checkbox-area input:checked + label::after {
   border-color: rgb(200, 200, 200);
 }
 
+.checkbox-area input:disabled + label {
+  background-color: rgba(43, 43, 43, 0.5);
+}
+body[data-color-mode=dark] .checkbox-area input:disabled + label {
+  background-color: rgba(43, 43, 43, 0.5);
+}
+
+.checkbox-area input:disabled + label::after {
+  background-color: rgba(43, 43, 43, 0.5);
+}
+body[data-color-mode=dark] .checkbox-area input:disabled + label::after {
+  background-color: rgba(43, 43, 43, 0.5);
+}
+
 .checkbox-area label {
   position: relative;
   display: block;
   width: 100%;
   height: 100%;
+  border-radius: 50%;
   text-align: center;
   font-size: 1.5rem;
   line-height: 140%;
@@ -782,6 +839,112 @@ body[data-color-mode=dark] .checkbox .ball-645.ball-5 {
   background-color: rgb(8, 187, 38);
 }
 
+.select-area {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.select-area label {
+  width: 50%;
+}
+.select-area select {
+  margin-left: 10px;
+  padding: 0 10px;
+  width: 100%;
+  text-align: right;
+  font-size: 1.5rem;
+  line-height: 140%;
+  font-weight: 500;
+  font-family: "Pretendard";
+  color: rgb(255, 255, 255);
+  background-color: rgb(51, 51, 51);
+}
+body[data-color-mode=dark] .select-area select {
+  color: rgb(22, 22, 22);
+}
+
+body[data-color-mode=dark] .select-area select {
+  background-color: rgb(255, 255, 255);
+}
+
+.accordion .accordion-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px 15px;
+  cursor: pointer;
+  background-color: rgb(24, 24, 24);
+}
+body[data-color-mode=dark] .accordion .accordion-header {
+  background-color: rgb(1, 10, 19);
+}
+
+.accordion .accordion-icon {
+  font-size: 18px;
+  color: #555;
+}
+.accordion .accordion-body {
+  padding: 10px;
+  background-color: rgb(24, 24, 24);
+  border-top: 1px solid transparent;
+  border-color: rgb(51, 51, 51);
+}
+body[data-color-mode=dark] .accordion .accordion-body {
+  background-color: rgb(1, 10, 19);
+}
+
+body[data-color-mode=dark] .accordion .accordion-body {
+  border-color: rgb(255, 255, 255);
+}
+
+.chart .chart-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 10px;
+}
+.chart .chart-bar .chart-bar-label {
+  width: 4rem;
+}
+.chart .chart-bar .chart-bar-volum {
+  position: relative;
+  width: 100%;
+  text-align: right;
+  padding: 0 5px;
+  line-height: 20px;
+  height: 20px;
+  margin-left: 10px;
+  border-radius: 5px;
+  background-color: rgb(51, 51, 51);
+}
+body[data-color-mode=dark] .chart .chart-bar .chart-bar-volum {
+  background-color: rgb(255, 255, 255);
+}
+
+.chart .chart-bar .chart-bar-bg {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  padding: 0 5px;
+  line-height: 20px;
+  height: 20px;
+  border-radius: 5px;
+  background-color: #4caf50;
+}
+
 .title-h3 span {
   font-size: 2.2rem;
   line-height: 136.364%;
@@ -829,6 +992,7 @@ body[data-color-mode=dark] .box.box-round-bg {
 }
 
 .ball-645 {
+  display: block;
   width: 4rem;
   height: 4rem;
   border-radius: 4rem;
@@ -894,6 +1058,10 @@ body[data-color-mode=dark] .ball-5 {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 .nums > .num-win {
   margin-top: 2rem;
@@ -901,20 +1069,27 @@ body[data-color-mode=dark] .ball-5 {
 .nums > .num-win > .title-medium {
   text-align: center;
 }
+.nums > .num-win > .ball-area {
+  margin-top: 10px;
+}
 .nums > .num-bonus {
   position: relative;
-  margin-top: 2rem;
-  margin-left: 2rem;
+  margin-top: 50px;
 }
 .nums > .num-bonus > .title-medium {
   text-align: center;
 }
+.nums > .num-bonus > .ball-area {
+  margin-top: 10px;
+}
 .nums > .num-bonus::after {
   position: absolute;
   display: block;
-  left: -1.5rem;
-  top: 4.8rem;
+  left: 50%;
+  top: -40px;
   content: "+";
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   font-size: 2.5rem;
   line-height: 140%;
   font-weight: 700;
@@ -935,8 +1110,19 @@ body[data-color-mode=dark] .nums > .num-bonus::after {
           justify-content: center;
 }
 
-.GameResultView {
-  margin-top: 5rem;
+.message-error {
+  font-size: 1.4rem;
+  line-height: 1.429;
+  font-weight: 400;
+  font-family: "Pretendard";
+  color: #E32B31;
+}
+body[data-color-mode=dark] .message-error {
+  color: #F2545C;
+}
+
+.GameResultView .section-area .section-header h4 {
+  margin-top: 20px;
 }
 .GameResultView .section-area .section-header .title-big {
   text-align: center;
@@ -947,4 +1133,18 @@ body[data-color-mode=dark] .nums > .num-bonus::after {
 
 .ContactView .section-area .section-footer {
   margin-top: 2rem;
+}
+
+.HomeView {
+  margin-top: 5rem;
+}
+.HomeView .section-area .section-header .title-big {
+  text-align: center;
+}
+.HomeView .section-area .section-header p {
+  text-align: center;
+}
+
+.StatisticsView .section-area .section-header h4 {
+  margin-top: 20px;
 }/*# sourceMappingURL=app.css.map */

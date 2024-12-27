@@ -38,6 +38,9 @@ body{
                 @include themeProperty(border-color, color-border-primary);
                 >.btn-gnb{
                     text-align: center;
+                    &.on{
+                        @include themeProperty(background-color, color-bg-primary);
+                    }
                 }
             }
         }
@@ -45,8 +48,7 @@ body{
 }
 
 .main-area{
-    padding:0 2rem;
-    padding-top:8rem;
+    padding:8rem 2rem;
 }
 
 .footer-area{

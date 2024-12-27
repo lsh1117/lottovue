@@ -15,6 +15,18 @@ h4{
     }
 }
 
+label{
+    &.label-big{
+        @include text-H3-Bold(color-text-primary);
+        strong{
+            @include text-H3-Bold(color-text-blue-basic-enabled);
+        }
+    }
+    &.label-medium{
+        @include text-H4-Bold(color-text-primary);
+    }
+}
+
 .text-description-medium{
     @include text-D1-Medium(color-text-secondary);
 }

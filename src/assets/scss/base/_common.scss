@@ -20,4 +20,5 @@
     left:0;
     width:100%;
     z-index: 500;
+    @include themeProperty(background-color,color-bg-secondary);
 }

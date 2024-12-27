@@ -7,7 +7,7 @@ const routes = [
     component: DefaultLayout,
     children: [
       {
-        path: '',
+        path: 'home',
         name: 'HomeView',
         component: () => import(/* webpackChunkName: "home" */ '../views/HomeView.vue'),
       },
@@ -20,6 +20,11 @@ const routes = [
         path: 'contact',
         name: 'ContactView',
         component: () => import(/* webpackChunkName: "contact" */ '../views/ContactView.vue'),
+      },
+      {
+        path: 'statistics',
+        name: 'StatisticsView',
+        component: () => import(/* webpackChunkName: "contact" */ '../views/StatisticsView.vue'),
       },
     ],
   },
