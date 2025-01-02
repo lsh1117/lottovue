@@ -20,6 +20,7 @@
 			<div class="section-footer">
 				<div class="btn-area btn-area-center">
 					<button class="btn-primary btn-small"  @click="openFixedPopup">변경</button>
+					<button class="btn-primary btn-small"  @click="openFixedRecommendPopup">추천번호</button>
 				</div>
 			</div>
 		</section>
@@ -44,12 +45,13 @@
 			<div class="section-footer">
 				<div class="btn-area btn-area-center">
 					<button class="btn-primary btn-small" @click="openExceptionPopup">변경</button>
+					<button class="btn-primary btn-small" @click="openExceptionRecommendPopup">추천번호</button>
 				</div>
 			</div>
 		</section>
 		<section class="section section-area fixed-bottom">
 			<div class="btn-area btn-area-center">
-				<button class="btn-primary btn-large" >추천번호받기</button>
+				<button class="btn-primary btn-large" >번호뽑기</button>
 			</div>
 		</section>
 	</div>
@@ -90,6 +92,21 @@
 		console.log("제외번호 닫기 핸들러 :",e);
 	}
 
+	// 추천 제외번호 팝업 호출
+	function openExceptionRecommendPopup() {
+		console.log("추천 제외번호 보기");
+		eventStore.emit('popup',{
+			id:"exceptionRecommend",
+			title:"추천 제외번호 보기",
+			onClose:onExceptionRecommendPopupClose,
+		});
+	}
+
+	// 추천 제외번호 닫기 핸들러.
+	function onExceptionRecommendPopupClose(e){
+		console.log("추천 제외번호 닫기 핸들러 :",e);
+	}
+
 	// 고정번호
 	let fixedNumbers = ref([]);
 	
@@ -113,6 +130,21 @@
 	// 고정번호 닫기 핸들러.
 	function onFixedPopupClose(e){
 		console.log("고정번호 닫기 핸들러 :",e);
+	}
+
+	// 추천 고정번호 팝업 호출
+	function openFixedRecommendPopup() {
+		console.log("추천 고정번호 보기");
+		eventStore.emit('popup',{
+			id:"fixedRecommend",
+			title:"추천 고정번호 보기",
+			onClose:onFixedRecommendPopupClose,
+		});
+	}
+
+	// 추천 고정번호 닫기 핸들러.
+	function onFixedRecommendPopupClose(e){
+		console.log("추천 고정번호 닫기 핸들러 :",e);
 	}
 
 	function getGroup(n) {

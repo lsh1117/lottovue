@@ -1,6 +1,8 @@
 import AlertPopup from '@/views/popup/AlertPopup.vue'
 import ExceptionPopup from '@/views/popup/ExceptionPopup.vue'
 import FixedPopup from '@/views/popup/FixedPopup.vue'
+import FixedRecommendPopup from '@/views/popup/FixedRecommendPopup.vue'
+import ExceptionRecommendPopup from '@/views/popup/ExceptionRecommendPopup.vue'
 
 /**
  * defaultProps
@@ -31,6 +33,22 @@ export const popupList = {
 		title: '고정번호',
 		type:'dialog',
 		component: FixedPopup,
+		options: {
+			
+		},
+	},
+	fixedRecommend: {
+		title: '추천 고정번호',
+		type:'dialog',
+		component: FixedRecommendPopup,
+		options: {
+			
+		},
+	},
+	exceptionRecommend: {
+		title: '추천 제외번호',
+		type:'dialog',
+		component: ExceptionRecommendPopup,
 		options: {
 			
 		},

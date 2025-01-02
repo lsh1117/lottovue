@@ -665,6 +665,7 @@ body[data-color-mode=dark] .btn-close {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  gap: 10px;
 }
 
 .popup-container {
