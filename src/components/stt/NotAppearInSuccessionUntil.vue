@@ -1,25 +1,26 @@
 <template>
-	<div class="consecutive-number-stats">
+	<div class="NotAppearInSuccessionUntil">
 		<div class="accordion accordion-area">
 
 			<div class="accordion-header" @click="toggleAccordion">
-				<label class="label-medium">번호별 연속 등장 횟수</label>
+				<label class="label-medium">번호별 현재까지 연속 미등장 횟수</label>
 				<span class="accordion-icon">{{ isOpen ? "▲" : "▼" }}</span>
 			</div>
 
 			<div class="accordion-body" v-if="isOpen">
 				<div class="chart">
 					<ul class="chart-list">
-						<li class="chart-item" v-for="(maxConsecutive, index) in maxConsecutiveCounts" :key="index">
+						<li class="chart-item" v-for="(item, index) in numberStats" :key="index">
 							<div class="chart-bar">
 								<!-- 번호 라벨 -->
 								<div class="chart-bar-label">
-									<span class="ball-645" :class="'ball-' + getGroup(index + 1)">{{ index + 1 }}</span>
+									<span class="ball-645"
+										:class="'ball-' + getGroup(item.number)">{{ item.number }}</span>
 								</div>
 								<!-- 연속 등장 횟수와 바 차트 -->
 								<div class="chart-bar-volum">
-									<span class="chart-bar-bg" :style="{ width: maxConsecutive * 5 + 'px' }"></span>
-									<span>{{ maxConsecutive }}</span>
+									<span class="chart-bar-bg" :style="{ width: item.count * 5 + 'px' }"></span>
+									<span>{{ item.count }}</span>
 								</div>
 							</div>
 						</li>
@@ -33,6 +34,7 @@
 <script setup>
 	import {
 		computed,
+		onMounted,
 		ref
 	} from 'vue';
 	import {
@@ -45,10 +47,18 @@
 	// 아코디언 상태 (열림/닫힘)
 	const isOpen = ref(false);
 
-	// 전체 데이터에서 연속 등장 횟수 계산
-	const maxConsecutiveCounts = computed(() => {
+	// 전체 데이터에서 현재까지 연속 미등장 횟수 계산
+	const notAppearInSuccessionUntil = () => {
 		const draws = drwStore.numbers; // Store에서 당첨 번호들 가져오기
-		return drwStore.getMaxConsecutiveForAllNumbers(draws); // 연속 등장 횟수 계산
+		return drwStore.getcNotAppearInSuccessionUntil(draws); // 연속 등장 횟수 계산
+	};
+
+	// 현재까지 연속 미등장 횟수를 반응형 데이터로 관리 (내림차순 정렬 추가)
+	const numberStats = computed(() => {
+		const statsArray = notAppearInSuccessionUntil();
+
+		// 등장 횟수를 기준으로 내림차순 정렬
+		return statsArray.sort((a, b) => b.count - a.count);
 	});
 
 	// 그룹(색상) 계산 함수
@@ -64,20 +74,4 @@
 </script>
 
 <style scoped>
-.chart-bar {
-	display: flex;
-	align-items: center;
-	margin-bottom: 10px;
-}
-
-.chart-bar-volum {
-	background-color: #4caf50;
-	color: white;
-	text-align: right;
-	padding: 0 5px;
-	line-height: 20px;
-	height: 20px;
-	margin-left: 10px;
-	border-radius: 5px;
-}
 </style>

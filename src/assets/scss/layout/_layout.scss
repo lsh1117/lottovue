@@ -11,6 +11,7 @@ body{
     top:0;
     left:0;
     width:100%;
+    z-index: 1000;
     @include themeProperty(background-color,color-bg-secondary);
     h1{
         display: flex;

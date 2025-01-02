@@ -1,5 +1,5 @@
 <template>
-	<div class="ShowNumber">
+	<div class="AppearNumber">
 		<div class="accordion accordion-area">
 			<div class="accordion-header" @click="toggleAccordion">
 				<label class="label-medium">번호별 등장 횟수</label>
@@ -15,9 +15,9 @@
 								<div class="chart-bar-label">
 									<span class="ball-645" :class="'ball-' + getGroup(item.number)">{{ item.number }}</span>
 								</div>
-								<!-- 연속 등장 횟수와 바 차트 -->
+								<!-- 바 차트 -->
 								<div class="chart-bar-volum">
-									<span class="chart-bar-bg" :style="{ width: item.count * 2 + 'px' }"></span>
+									<span class="chart-bar-bg" :style="{ width: item.count * 1 + 'px' }"></span>
 									<span>{{ item.count }}</span>
 								</div>
 							</div>
@@ -87,23 +87,4 @@
 </script>
 
 <style scoped>
-	
-
-	.chart-bar {
-		display: flex;
-		align-items: center;
-		margin-bottom: 10px;
-	}
-
-	.chart-bar-volum {
-		background-color: #4caf50;
-		color: white;
-		text-align: right;
-		padding: 0 5px;
-		line-height: 20px;
-		height: 20px;
-		margin-left: 10px;
-		border-radius: 5px;
-	}
-
 </style>

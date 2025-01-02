@@ -13,6 +13,9 @@
 
         .chart-bar-label{
             width:4rem;
+            .ball-645{
+                @include text-D2-Regular(color-text-primary)
+            }
         }
         .chart-bar-volum {
             position: relative;
@@ -24,6 +27,10 @@
             margin-left: 10px;
             border-radius: 5px;
             @include themeProperty(background-color,color-bg-primary);
+
+            span{
+                @include text-B1-Regular(color-text-primary);
+            }
         }
         .chart-bar-bg{
             position: absolute;

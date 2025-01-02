@@ -41,3 +41,9 @@
 .ball-5{
     @include themeProperty(background-color, color-ball-05);
 }
+.ball-odd{
+    @include themeProperty(background-color, color-ball-03);
+}
+.ball-even{
+    @include themeProperty(background-color, color-ball-02);
+}

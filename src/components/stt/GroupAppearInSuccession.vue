@@ -1,21 +1,20 @@
 <template>
-	<div class="NonAppearances">
+	<div class="GroupAppearInSuccession">
 		<div class="accordion accordion-area">
 
 			<div class="accordion-header" @click="toggleAccordion">
-				<label class="label-medium">번호별 현재까지 연속 미등장 횟수</label>
+				<label class="label-medium">구간별 연속 등장 횟수</label>
 				<span class="accordion-icon">{{ isOpen ? "▲" : "▼" }}</span>
 			</div>
 
 			<div class="accordion-body" v-if="isOpen">
 				<div class="chart">
 					<ul class="chart-list">
-						<li class="chart-item" v-for="(item, index) in maxNonAppearancesCounts" :key="index">
+						<li class="chart-item" v-for="(item, index) in numberStats" :key="index">
 							<div class="chart-bar">
 								<!-- 번호 라벨 -->
 								<div class="chart-bar-label">
-									<span class="ball-645"
-										:class="'ball-' + getGroup(item.number)">{{ item.number }}</span>
+									<span class="ball-645" :class="'ball-' + item.number">{{ groupLabels[item.number-1] }}</span>
 								</div>
 								<!-- 연속 등장 횟수와 바 차트 -->
 								<div class="chart-bar-volum">
@@ -34,7 +33,6 @@
 <script setup>
 	import {
 		computed,
-		onMounted,
 		ref
 	} from 'vue';
 	import {
@@ -44,11 +42,25 @@
 	// Pinia store 가져오기
 	const drwStore = useDrwStore();
 
+    // 구간 텍스트
+    const groupLabels = ref(["1~10","11~20","21~30","31~40","41~45"])
+
 	// 아코디언 상태 (열림/닫힘)
 	const isOpen = ref(false);
 
-	// 현재 까지 등장하지 않은 
-	const maxNonAppearancesCounts = ref([]);
+	// 전체 데이터에서 연속 등장 횟수 계산
+	const appearInSuccession = () => {
+		const draws = drwStore.numbers; // Store에서 당첨 번호들 가져오기
+		return drwStore.getGroupAppearInSuccession(draws); // 연속 등장 횟수 계산
+	};
+
+	// 번호별 등장 횟수를 반응형 데이터로 관리 (내림차순 정렬 추가)
+	const numberStats = computed(() => {
+		const statsArray = appearInSuccession();
+
+		// 등장 횟수를 기준으로 내림차순 정렬
+		return statsArray.sort((a, b) => b.count - a.count);
+	});
 
 	// 그룹(색상) 계산 함수
 	function getGroup(number) {
@@ -60,40 +72,7 @@
 		isOpen.value = !isOpen.value; // 열기/닫기 상태 반전
 	}
 
-	onMounted(() => {
-		// 번호 체크
-		const _draws = drwStore.numbers; // Store에서 당첨 번호들 가져오기
-
-		for (let i = 0; i < 45; i++) {
-			const _number = i + 1; // 번호 (1부터 시작)
-			const _cnt = drwStore.calculateNonAppearances(_draws, _number);
-
-			const _data = {
-				number: _number,
-				count: _cnt
-			};
-			maxNonAppearancesCounts.value.push(_data);
-		}
-	})
-
 </script>
 
 <style scoped>
-	.chart-bar {
-		display: flex;
-		align-items: center;
-		margin-bottom: 10px;
-	}
-
-	.chart-bar-volum {
-		background-color: #4caf50;
-		color: white;
-		text-align: right;
-		padding: 0 5px;
-		line-height: 20px;
-		height: 20px;
-		margin-left: 10px;
-		border-radius: 5px;
-	}
-
 </style>
