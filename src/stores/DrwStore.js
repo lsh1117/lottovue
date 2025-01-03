@@ -12675,6 +12675,24 @@ export const useDrwStore = defineStore('drwStore', {
 		getDrwNo(no) {
 			return this.numbers.find(item => item.drwNo === no);
 		},
+		getTotalAppear(numbers){
+			const stats = Array(45).fill(0); // 1~45의 초기 등장 횟수 (0으로 초기화)
+
+			numbers.forEach((item) => {
+				// 각 회차의 당첨번호 카운트
+				stats[Number(item.drwtNo1) - 1]++;
+				stats[Number(item.drwtNo2) - 1]++;
+				stats[Number(item.drwtNo3) - 1]++;
+				stats[Number(item.drwtNo4) - 1]++;
+				stats[Number(item.drwtNo5) - 1]++;
+				stats[Number(item.drwtNo6) - 1]++;
+			});
+
+			return stats.map((count, index) => ({
+				number: index + 1,
+				count,
+			})); // 번호와 등장 횟수를 객체로 반환
+		},
 		// 연속 등장 횟수를 계산하는 함수
 		getAppearInSuccession(draws) {
 			const consecutiveCounts = Array(45).fill(0).map(() => 0); // 번호별 최대 연속 등장 횟수

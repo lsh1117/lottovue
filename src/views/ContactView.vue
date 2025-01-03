@@ -20,7 +20,7 @@
 			<div class="section-footer">
 				<div class="btn-area btn-area-center">
 					<button class="btn-primary btn-small"  @click="openFixedPopup">변경</button>
-					<button class="btn-primary btn-small"  @click="openFixedRecommendPopup">추천번호</button>
+					<button class="btn-primary btn-small"  @click="openFixedRecommendPopup">추천 고정번호</button>
 				</div>
 			</div>
 		</section>
@@ -45,7 +45,7 @@
 			<div class="section-footer">
 				<div class="btn-area btn-area-center">
 					<button class="btn-primary btn-small" @click="openExceptionPopup">변경</button>
-					<button class="btn-primary btn-small" @click="openExceptionRecommendPopup">추천번호</button>
+					<button class="btn-primary btn-small" @click="openExceptionRecommendPopup">추천 제외번호</button>
 				</div>
 			</div>
 		</section>

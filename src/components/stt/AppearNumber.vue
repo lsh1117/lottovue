@@ -51,23 +51,7 @@
 
 	// 번호 등장 횟수 계산 함수
 	const calculateNumberStats = () => {
-		const stats = Array(45).fill(0); // 1~45의 초기 등장 횟수 (0으로 초기화)
-
-		// 스토어 데이터 순회
-		drwStore.numbers.forEach((item) => {
-			// 각 회차의 당첨번호 카운트
-			stats[Number(item.drwtNo1) - 1]++;
-			stats[Number(item.drwtNo2) - 1]++;
-			stats[Number(item.drwtNo3) - 1]++;
-			stats[Number(item.drwtNo4) - 1]++;
-			stats[Number(item.drwtNo5) - 1]++;
-			stats[Number(item.drwtNo6) - 1]++;
-		});
-
-		return stats.map((count, index) => ({
-			number: index + 1,
-			count,
-		})); // 번호와 등장 횟수를 객체로 반환
+		return drwStore.getTotalAppear(drwStore.numbers);
 	};
 
 	// 번호별 등장 횟수를 반응형 데이터로 관리 (내림차순 정렬 추가)
