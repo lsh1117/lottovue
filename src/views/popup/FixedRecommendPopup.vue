@@ -1,7 +1,9 @@
 <template>
 	<div>
 		<div class="text-area">
-			고정번호 를 추천합니다.
+			<p v-for="message in messages" :key="message">
+				<span class="text-normal">{{ message }}</span>
+			</p>
 		</div>
 		<div class="btn-area btn-area-center">
 			<button class="btn-primary btn-small" @click="$emit('close')">닫기</button>
@@ -10,15 +12,73 @@
 </template>
 
 <script setup>
-	import {
-		onMounted,
-		ref,
-		computed
-	} from "vue";
-	import {
-		useFixedStore
-	} from "@/stores/FixedStore";
+	import {onMounted,ref} from "vue";
+	import {useDrwStore} from '@/stores/DrwStore';
 
+	// Pinia store 가져오기
+	const drwStore = useDrwStore();
+	const messages = ref([]);
+
+	onMounted(()=>{
+		// 현재까지 연속 미등장
+		const _message1 = getAppearInSuccessionUntil();
+		if(_message1){
+			messages.value.push(_message1);
+		}
+		// 최근 미등장
+		const _message2 = getLastAppear();
+		if(_message2){
+			messages.value.push(_message2);
+		}
+	});
+	
+	// 연속 미등장 횟수 분석
+	function getAppearInSuccessionUntil(){
+		// 현재까지 연속 미등장 횟수 가져오기
+		const _statsArray = drwStore.getNotAppearInSuccessionUntil(drwStore.numbers);
+		_statsArray.sort((a, b) => b.count - a.count);
+
+		// 연속으로 미등장한 횟수 가져오기
+		const _notAppearInSuccession = drwStore.getNotAppearInSuccession(drwStore.numbers);
+		// 연속으로 미등장한 횟수중 가장 많이 미등장한 횟수
+		const _cnt = _notAppearInSuccession[0].count;
+
+		let _message = "";
+		let items = [];
+		
+		for(let i=0;i<_statsArray.length;i++){
+			if(_statsArray[i].count > _cnt){
+				items.push(_statsArray[i].number);
+			}
+		}
+		if(items.length > 0 ){
+			_message = items.join() + " 번호 : " + "최근 "+_cnt+"회 이상 연속으로 미등장.";
+			return _message;
+		}
+		else{
+			return null;
+		}
+	}
+
+	// 최근 100 회 등장 횟수 분석
+	function getLastAppear(){
+		// 최근 100 회 데이터
+		let _max = {count:0};
+		let _min = {count:100};
+		let _totalAppear = [];
+
+		// 최근 100회 동안 가장 많이 나왔던 횟수 25, 가장 적게 나왔던 횟수 5
+		let _lastNumbers = drwStore.numbers.slice(0,100);
+
+		_totalAppear = drwStore.getTotalAppear(_lastNumbers);
+		_totalAppear.sort((a, b) => b.count - a.count);
+
+		_max = _totalAppear[0];
+		_min = _totalAppear[44];
+
+		const _message = _min.number + " 번 : 최근 100회동안 " + _min.count + "번 등장으로 가장적게 나왔음.";
+		return _message;
+	}
 </script>
 
 <style scoped>

@@ -51,7 +51,7 @@
 		</section>
 		<section class="section section-area fixed-bottom">
 			<div class="btn-area btn-area-center">
-				<button class="btn-primary btn-large" >번호뽑기</button>
+				<button class="btn-primary btn-large" @click="openRecommendPopup" >번호뽑기</button>
 			</div>
 		</section>
 	</div>
@@ -62,10 +62,17 @@
 	import { useEventStore } from '@/stores/EventStore';
 	import { useExceptionStore } from "@/stores/ExceptionStore";
 	import { useFixedStore } from "@/stores/FixedStore";
+	import { useRecommendStore } from "@/stores/RecommendStore";
+	import { useCalculateStore } from "@/stores/CalculateStore";
+	import { useDrwStore } from "@/stores/DrwStore";
 
 	const eventStore = useEventStore();
 	const exceptionStore = useExceptionStore();
 	const fixedStore = useFixedStore();
+	const recommendStore = useRecommendStore();
+	const calculateStore = useCalculateStore();
+	// Pinia store 가져오기
+	const drwStore = useDrwStore();
 	
 	// 제외 번호
 	let exceptionNumbers = ref([]);
@@ -150,6 +157,47 @@
 	function getGroup(n) {
 		// (n - 1)을 10으로 나눈 몫에 1을 더함
 		return Math.floor((n - 1) / 10) + 1;
+	}
+
+	// 번호뽑기 팝업 호출
+	function openRecommendPopup() {
+		console.log("번호뽑기 팝업 호출");
+
+		if(calculateStore.getState() === false) {
+			calculate();
+		}
+		eventStore.emit('popup',{
+			id:"recommend",
+			title:"번호 뽑기",
+		});
+	}
+
+	function calculate(){
+		calculateStore.setState(true);
+		// 전체 번호
+		let calculateNumbers = [];
+
+		// 등장 횟수
+		let appearNumber = drwStore.getTotalAppear(drwStore.numbers);
+		appearNumber.sort((a, b) => b.count - a.count);
+		appearNumber.forEach((item) => {
+			for(let i=0;i<item.count;i++){
+				calculateNumbers.push(item.number);
+			}
+		});
+
+		// 현재까지 연속 미등장 횟수
+		let notAppearInSuccession = drwStore.getNotAppearInSuccessionUntil(drwStore.numbers);
+		notAppearInSuccession.sort((a, b) => b.count - a.count);
+		notAppearInSuccession.forEach((item) => {
+			for(let i=0;i<item.count;i++){
+				calculateNumbers.push(item.number);
+			}
+		});
+
+		calculateStore.setNumbers(calculateNumbers);
+
+		console.log("@@@@@",calculateNumbers);
 	}
 
 	onMounted(() => {

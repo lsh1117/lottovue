@@ -12,8 +12,7 @@
 </template>
 
 <script setup>
-	import {onMounted,ref,computed} from "vue";
-	import {useFixedStore} from "@/stores/FixedStore";
+	import {onMounted,ref} from "vue";
 	import {useDrwStore} from '@/stores/DrwStore';
 
 	// Pinia store 가져오기
@@ -46,7 +45,7 @@
 		});
 
 		if(thirdAppears.length > 0){
-			const _message = thirdAppears.join() + " 번호는 최근 2번 이상 연속으로 나온 번호로 2번이상 나올 확률은 극히 낮은 확률 입니다.";
+			const _message = thirdAppears.join() + " 번 : 최근 2번 이상 연속으로 나옴.";
 			return _message;
 		}
 		else{
@@ -56,7 +55,8 @@
 
 	// 최근 100 회 등장 횟수 분석
 	function getLastAppear(){
-		// 최근 100 회 데이터
+		// 최근 100 회 통계 데이터
+		/*
 		let _max = {count:0};
 		let _min = {count:100};
 
@@ -75,14 +75,16 @@
 			if(Number(_min.count) > Number(_totalAppear[44].count)){
 				_min = _totalAppear[44];
 			}
-
-			console.log("startIndex : ",startIndex, ", endIndex : ", endIndex)
-			console.log("##########", _totalAppear.length ,_totalAppear[0]);
-			console.log("##########",_totalAppear[44]);
 		}
 
 		console.log("#### _max :", _max);
 		console.log("#### _min :", _min);
+
+		const _message = _max.number + " 번 : 최근 100회동안 " + _max.count + "번 나왔음.";
+		return _message;
+		*/
+
+
 		/*
 		// 최근 100 회 등장 정보
 		const _totalAppear = drwStore.getTotalAppear(_lastNumbers);
@@ -94,7 +96,22 @@
 		else {
 			null;
 		}
-			*/
+		*/
+		let _max = {count:0};
+		let _min = {count:100};
+		let _totalAppear = [];
+
+		// 최근 100회 동안 가장 많이 나왔던 횟수 25, 가장 적게 나왔던 횟수 5
+		let _lastNumbers = drwStore.numbers.slice(0,100);
+
+		_totalAppear = drwStore.getTotalAppear(_lastNumbers);
+		_totalAppear.sort((a, b) => b.count - a.count);
+
+		_max = _totalAppear[0];
+		_min = _totalAppear[44];
+
+		const _message = _max.number + " 번 : 최근 100회동안 " + _max.count + "번 등장으로 가장많이 나왔음.";
+		return _message;
 	}
 
 </script>

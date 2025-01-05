@@ -6,6 +6,7 @@
 			</div>
 			<div class="section-body">
 				<!-- AppearNumber 컴포넌트 삽입 -->
+				<LastAppearNumber />
 				<AppearNumber />
 				<AppearInSuccession />
 				<AppearInSuccessionUntil />
@@ -25,6 +26,7 @@
 </template>
 
 <script setup>
+	import LastAppearNumber from "@/components/stt/LastAppearNumber.vue"; // 최근 100회 동안 번호별 등장 횟수 컴포넌트 가져오기
 	import AppearNumber from "@/components/stt/AppearNumber.vue"; // 번호별 등장 횟수 컴포넌트 가져오기
 	import AppearInSuccession from "@/components/stt/AppearInSuccession.vue"; // 연속등장 컴포넌트 가져오기
 	import AppearInSuccessionUntil from "@/components/stt/AppearInSuccessionUntil.vue"; // 현재까지 연속 등장 컴포넌트 가져오기

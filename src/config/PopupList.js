@@ -3,6 +3,7 @@ import ExceptionPopup from '@/views/popup/ExceptionPopup.vue'
 import FixedPopup from '@/views/popup/FixedPopup.vue'
 import FixedRecommendPopup from '@/views/popup/FixedRecommendPopup.vue'
 import ExceptionRecommendPopup from '@/views/popup/ExceptionRecommendPopup.vue'
+import RecommendPopup from '@/views/popup/RecommendPopup.vue'
 
 /**
  * defaultProps
@@ -49,6 +50,14 @@ export const popupList = {
 		title: '추천 제외번호',
 		type:'dialog',
 		component: ExceptionRecommendPopup,
+		options: {
+			
+		},
+	},
+	recommend: {
+		title: '번호 뽑기',
+		type:'dialog',
+		component: RecommendPopup,
 		options: {
 			
 		},

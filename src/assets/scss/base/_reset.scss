@@ -58,6 +58,14 @@ html{
     height:100%;
     font-size: 62.5%;
 }
+
+@media (max-width: 330px) {
+    html {
+      font-size: 12px !important;
+    }
+  }
+
+
 html,body{
     width:100%;
     min-height: 100%;
@@ -71,14 +79,6 @@ body{
     font-size: 1.6rem;
     @include themeProperty(color, color-text-gray-800, $body: true);
     @include themeProperty(background-color, color-common-white, $body: true);
-}
-
-[data-size-mode='normal']{
-    font-size: 62.5%;
-}
-
-[data-size-mode="big"]{
-    font-size: 81.25%;
 }
 // 타이틀 문자열 단어별 줄바꿈
 h1, h2, h3, h4, h5, h6{

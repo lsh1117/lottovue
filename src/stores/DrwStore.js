@@ -12712,7 +12712,7 @@ export const useDrwStore = defineStore('drwStore', {
 						currentConsecutive[i - 1]++; // 연속 등장 횟수 증가
 
 						if (currentConsecutive[i - 1] == 4) {
-							console.log("#############", i, item)
+							//console.log("#############", i, item)
 						}
 
 					} else {
@@ -12813,7 +12813,7 @@ export const useDrwStore = defineStore('drwStore', {
 			}));
 		},
 		// 현재까지의 연속 미등장 횟수를 계산하는 함수
-		getcNotAppearInSuccessionUntil(numbers) {
+		getNotAppearInSuccessionUntil(numbers) {
 			const numbersCount = Array(45).fill(0).map(() => 0); // 번호별 최대 연속 등장 횟수
 
 			for (let i = 0; i < 45; i++) {
