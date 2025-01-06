@@ -4,6 +4,7 @@ import FixedPopup from '@/views/popup/FixedPopup.vue'
 import FixedRecommendPopup from '@/views/popup/FixedRecommendPopup.vue'
 import ExceptionRecommendPopup from '@/views/popup/ExceptionRecommendPopup.vue'
 import RecommendPopup from '@/views/popup/RecommendPopup.vue'
+import MyNumberPopup from '@/views/popup/MyNumberPopup.vue'
 
 /**
  * defaultProps
@@ -58,6 +59,14 @@ export const popupList = {
 		title: '번호 뽑기',
 		type:'dialog',
 		component: RecommendPopup,
+		options: {
+			
+		},
+	},
+	myNumber: {
+		title: '내 번호 보기',
+		type:'dialog',
+		component: MyNumberPopup,
 		options: {
 			
 		},

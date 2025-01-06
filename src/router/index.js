@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router'
 import DefaultLayout from '../components/layout/DefaultLayout.vue'
 
 const routes = [
@@ -11,28 +11,32 @@ const routes = [
         path: 'home',
         name: 'HomeView',
         component: () => import(/* webpackChunkName: "home" */ '../views/HomeView.vue'),
+        meta: { hidden: true }
       },
       {
         path: 'gameResult',
         name: 'GameResultView',
         component: () => import(/* webpackChunkName: "gameResult" */ '../views/GameResultView.vue'),
+        meta: { hidden: true }
       },
       {
         path: 'contact',
         name: 'ContactView',
         component: () => import(/* webpackChunkName: "contact" */ '../views/ContactView.vue'),
+        meta: { hidden: true }
       },
       {
         path: 'statistics',
         name: 'StatisticsView',
         component: () => import(/* webpackChunkName: "contact" */ '../views/StatisticsView.vue'),
+        meta: { hidden: true }
       },
     ],
   },
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(), 
   routes,
 })
 

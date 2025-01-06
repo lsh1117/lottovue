@@ -2,8 +2,8 @@
 	<div>
 		<div class="ball-area">
 			<ul class="ball-list">
-				<li class="ball-item" v-for="number in numbers" :key="number">
-					<span class="ball-645" :class="'ball-' + getGroup(number)">{{number}}</span>
+				<li class="ball-item" v-for="item in numbers" :key="item">
+					<span class="ball-645 ball-645-small" :class="'ball-' + getGroup(item.number)">{{item.number}}</span>
 				</li>
 			</ul>
 		</div>
@@ -19,12 +19,14 @@
 	import { useExceptionStore } from "@/stores/ExceptionStore";
 	import { useFixedStore } from "@/stores/FixedStore";
 	import { useRecommendStore } from "@/stores/RecommendStore";
+	import { useDrwStore } from "@/stores/DrwStore";
 
 	// Pinia store 가져오기
 	const exceptionStore = useExceptionStore();
 	const fixedStore = useFixedStore();
 	const calculateStore = useCalculateStore();
 	const recommendStore = useRecommendStore();
+	const drwStore = useDrwStore();
 
 	const numbers = ref([]);
 
@@ -32,6 +34,9 @@
 	const _exceptionNumber = exceptionStore.numbers;
 	// 고정 번호
 	const _fixedNumber = fixedStore.numbers;
+
+	// 다음 회차 번호
+	const _nextDrw = Number(drwStore.numbers[0].drwNo) + 1;
 
 	// 번호뽑기시 삭제해야 할 번호. ( 제외번호+고정번호 )
 	const _exc = _exceptionNumber.concat(_fixedNumber);
@@ -42,18 +47,22 @@
 	// 번호뽑기시 삭제해야 할 번호 제외 한 전체 번호
 	let _newTotalNumbers = _totalNumbers.filter(item => !_exc.includes(item));
 
+	// 고정번호를 제외한 나머지 번호 갯수
 	const _cnt = 6 - _fixedNumber.length;
 
 	for(let i=0;i<_cnt;i++) {
 		let _number = getRandomElement(_newTotalNumbers);
 		_newTotalNumbers = _newTotalNumbers.filter(item => item !== _number);
-		numbers.value.push(_number);
+		const _numberObj = {
+			number:_number,
+		}
+		numbers.value.push(_numberObj);
 	}
 
 	numbers.value.push(..._fixedNumber);
-	numbers.value.sort((a, b) => a - b);
+	numbers.value.sort((a, b) => a.number - b.number);
 
-	recommendStore.addNumbers(numbers);
+	recommendStore.addRecommend(numbers,_nextDrw);
 
 	// 번호 그룹 계산 함수
 	function getGroup(n) {
@@ -73,7 +82,7 @@
 	}
 
 	onMounted(() => {
-		
+		console.log("###### 번호 뽑기 onMounted" );
 	});
 </script>
 

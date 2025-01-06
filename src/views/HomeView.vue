@@ -45,7 +45,7 @@
 	// Pinia store 가져오기
 	const drwStore = useDrwStore();
 
-	const result = ref(drwStore.getDrwNo("1151"));
+	const result = ref(drwStore.numbers[0]);
 
 	console.log("@@@@@@@@@@",result);
 

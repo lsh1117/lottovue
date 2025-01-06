@@ -1,8 +1,8 @@
 <template>
-	<div class="ContactView">
+	<div class="MypageView">
 		<section class="section section-area">
 			<div class="section-header">
-				<h4 class="title-big">고정번호</h4>
+				<h4 class="title-big">내정보</h4>
 			</div>
 			<div class="section-body">
 				<div class="box-area">
@@ -52,7 +52,6 @@
 		<section class="section section-area fixed-bottom">
 			<div class="btn-area btn-area-center">
 				<button class="btn-primary btn-large" @click="openRecommendPopup" >번호뽑기</button>
-				<button class="btn-primary btn-large" @click="openMyNumberPopup" >내번호보기</button>
 			</div>
 		</section>
 	</div>
@@ -170,15 +169,6 @@
 		eventStore.emit('popup',{
 			id:"recommend",
 			title:"번호 뽑기",
-		});
-	}
-
-	// 내번호 보기 팝업 호출
-	function openMyNumberPopup() {
-		console.log("번호뽑기 팝업 호출");
-		eventStore.emit('popup',{
-			id:"myNumber",
-			title:"내 번호 보기",
 		});
 	}
 
