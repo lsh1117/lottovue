@@ -125,6 +125,7 @@
 		console.log("##### 회차 변경 시 결과 업데이트 :", selectedDrwNo.value);
 		const _list = recommendStore.getRecommends(selectedDrwNo.value);
 		_list.forEach(item => {
+			// 회차 정보 마지막 회차와 추천번호 회차와 비교하여 마지막회차 보다 추천번호 회차가 높을경우 추천전 계산
 			const _drw = item.drw;
 			const _numbers = item.numbers;
 			let _cnt = 0;
