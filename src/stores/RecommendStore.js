@@ -20,8 +20,6 @@ export const useRecommendStore = defineStore('recommendStore', {
 
 			this.collections.push(_recommendObj);
 
-			console.log("###### this.collections :",this.collections);
-
 			function getFormattedDate() {
 				const now = new Date(); // 현재 시간 가져오기
 				const year = now.getFullYear(); // 연도 (4자리)

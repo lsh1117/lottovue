@@ -80,7 +80,7 @@
 	
 	// 제외번호 팝업 호출
 	function openExceptionPopup() {
-		console.log("제외번호 변경");
+		//console.log("제외번호 변경");
 		eventStore.emit('popup',{
 			id:"exception",
 			title:"제외번호1",
@@ -92,17 +92,17 @@
 	// 제외번호 확인 핸들러.
 	function onExceptionPopupConfirm(e){
 		exceptionNumbers.value = [...exceptionStore.numbers];
-		console.log("제외번호 확인 핸들러 :",e);
+		//console.log("제외번호 확인 핸들러 :",e);
 	}
 
 	// 제외번호 닫기 핸들러.
 	function onExceptionPopupClose(e){
-		console.log("제외번호 닫기 핸들러 :",e);
+		//console.log("제외번호 닫기 핸들러 :",e);
 	}
 
 	// 추천 제외번호 팝업 호출
 	function openExceptionRecommendPopup() {
-		console.log("추천 제외번호 보기");
+		//console.log("추천 제외번호 보기");
 		eventStore.emit('popup',{
 			id:"exceptionRecommend",
 			title:"추천 제외번호 보기",
@@ -112,7 +112,7 @@
 
 	// 추천 제외번호 닫기 핸들러.
 	function onExceptionRecommendPopupClose(e){
-		console.log("추천 제외번호 닫기 핸들러 :",e);
+		//console.log("추천 제외번호 닫기 핸들러 :",e);
 	}
 
 	// 고정번호
@@ -120,7 +120,7 @@
 	
 	// 고정번호 팝업 호출
 	function openFixedPopup() {
-		console.log("고정번호 변경");
+		//console.log("고정번호 변경");
 		eventStore.emit('popup',{
 			id:"fixed",
 			title:"고정번호",
@@ -132,17 +132,17 @@
 	// 고정번호 확인 핸들러.
 	function onFixedPopupConfirm(e){
 		fixedNumbers.value = [...fixedStore.numbers];
-		console.log("고정번호 확인 핸들러 :",e);
+		//console.log("고정번호 확인 핸들러 :",e);
 	}
 
 	// 고정번호 닫기 핸들러.
 	function onFixedPopupClose(e){
-		console.log("고정번호 닫기 핸들러 :",e);
+		//console.log("고정번호 닫기 핸들러 :",e);
 	}
 
 	// 추천 고정번호 팝업 호출
 	function openFixedRecommendPopup() {
-		console.log("추천 고정번호 보기");
+		//console.log("추천 고정번호 보기");
 		eventStore.emit('popup',{
 			id:"fixedRecommend",
 			title:"추천 고정번호 보기",
@@ -152,7 +152,7 @@
 
 	// 추천 고정번호 닫기 핸들러.
 	function onFixedRecommendPopupClose(e){
-		console.log("추천 고정번호 닫기 핸들러 :",e);
+		//console.log("추천 고정번호 닫기 핸들러 :",e);
 	}
 
 	function getGroup(n) {
@@ -162,7 +162,7 @@
 
 	// 번호뽑기 팝업 호출
 	function openRecommendPopup() {
-		console.log("번호뽑기 팝업 호출");
+		//console.log("번호뽑기 팝업 호출");
 
 		if(calculateStore.getState() === false) {
 			calculate();
@@ -175,7 +175,7 @@
 
 	// 내번호 보기 팝업 호출
 	function openMyNumberPopup() {
-		console.log("번호뽑기 팝업 호출");
+		//console.log("번호뽑기 팝업 호출");
 		eventStore.emit('popup',{
 			id:"myNumber",
 			title:"내 번호 보기",
@@ -190,8 +190,10 @@
 		// 등장 횟수
 		let appearNumber = drwStore.getTotalAppear(drwStore.numbers);
 		appearNumber.sort((a, b) => b.count - a.count);
+		const appearCnt = appearNumber[0].count;
 		appearNumber.forEach((item) => {
-			for(let i=0;i<item.count;i++){
+			const _cnt = appearCnt - item.count;
+			for(let i=0;i<_cnt;i++){
 				calculateNumbers.push(item.number);
 			}
 		});
@@ -205,9 +207,20 @@
 			}
 		});
 
-		calculateStore.setNumbers(calculateNumbers);
+		// 최근 100회 등장 횟수/
+		/*
+		let _lastNumbers = drwStore.getTotalAppear( drwStore.numbers.slice(0,100) );
+		_lastNumbers.sort((a, b) => b.count - a.count);
+		const lastCnt = _lastNumbers[0].count;
+		_lastNumbers.forEach((item) => {
+			const _cnt = lastCnt - item.count;
+			for(let i=0;i<_cnt;i++){
+				calculateNumbers.push(item.number);
+			}
+		});
+		*/
 
-		console.log("@@@@@",calculateNumbers);
+		calculateStore.setNumbers(calculateNumbers);
 	}
 
 	onMounted(() => {

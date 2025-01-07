@@ -28,7 +28,7 @@
                     border-right:1px solid transparent;
                 }
                 @include themeProperty(border-color,color-border-gray-600,!important);
-                span{
+                span,strong{
                     @include text-D1-Regular(color-text-tertiary);
                 }
                 
@@ -63,7 +63,7 @@
                     border-right:1px solid transparent;
                 }
                 @include themeProperty(border-color,color-border-gray-600,!important);
-                span{
+                span,strong{
                     @include text-D1-Regular(color-text-tertiary);
                 }
                 

@@ -32,7 +32,7 @@
 
 	function onPopupCall(e) {
 		// 팝업 호출 이벤트 핸들러
-		console.log(" 팝업 호출 :", e);
+		//console.log(" 팝업 호출 :", e);
 		const popupData = popupList[e.id];
 		if (!popupData) {
 			console.error(`팝업 키 '${key}'는 popupList에 정의되어 있지 않습니다.`)
@@ -64,7 +64,7 @@
 
 	// 팝업 열기 함수
 	function openPopup(prop) {
-		console.log("******",prop)
+		//console.log("******",prop)
 
 		const id = Date.now()
 		popups.push({

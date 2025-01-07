@@ -47,7 +47,7 @@
 
 	const result = ref(drwStore.numbers[0]);
 
-	console.log("@@@@@@@@@@",result);
+	//console.log("@@@@@@@@@@",result);
 
 	// 당첨번호를 배열로 정리
 	const winningNumbers = [

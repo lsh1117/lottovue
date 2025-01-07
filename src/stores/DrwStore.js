@@ -5,6 +5,7 @@ import {
 export const useDrwStore = defineStore('drwStore', {
 	state: () => ({
 		numbers: [
+			/**/
 			{
 				"drwNo": "1153",
 				"drwNoDate": "2025.01.04",
@@ -16,6 +17,7 @@ export const useDrwStore = defineStore('drwStore', {
 				"drwtNo6": "44",
 				"bnusNo": "5"
 			},
+			
 			{
 				"drwNo": "1152",
 				"drwNoDate": "2024.12.28",
@@ -27,6 +29,7 @@ export const useDrwStore = defineStore('drwStore', {
 				"drwtNo6": "37",
 				"bnusNo": "5"
 			},
+			
 			{
 				"drwNo": "1151",
 				"drwNoDate": "2024.12.21",
@@ -38,6 +41,7 @@ export const useDrwStore = defineStore('drwStore', {
 				"drwtNo6": "29",
 				"bnusNo": "8"
 			},
+			
 			{
 				"drwNo": "1150",
 				"drwNoDate": "2024.12.14",
@@ -49,6 +53,7 @@ export const useDrwStore = defineStore('drwStore', {
 				"drwtNo6": "45",
 				"bnusNo": "25"
 			},
+			
 			{
 				"drwNo": "1149",
 				"drwNoDate": "2024.12.07",
@@ -60,6 +65,7 @@ export const useDrwStore = defineStore('drwStore', {
 				"drwtNo6": "36",
 				"bnusNo": "38"
 			},
+			
 			{
 				"drwNo": "1148",
 				"drwNoDate": "2024.11.30",
@@ -12735,7 +12741,7 @@ export const useDrwStore = defineStore('drwStore', {
 						currentConsecutive[i - 1]++; // 연속 등장 횟수 증가
 
 						if (currentConsecutive[i - 1] == 4) {
-							//console.log("#############", i, item)
+							////console.log("#############", i, item)
 						}
 
 					} else {
@@ -12785,7 +12791,7 @@ export const useDrwStore = defineStore('drwStore', {
 						}
 					});
 				} catch (e) {
-					console.log("loop end : ", e.message);
+					//console.log("loop end : ", e.message);
 				}
 			}
 
@@ -12863,7 +12869,7 @@ export const useDrwStore = defineStore('drwStore', {
 						}
 					});
 				} catch (e) {
-					console.log("loop end : ", e.message);
+					//console.log("loop end : ", e.message);
 				}
 			}
 
@@ -12950,7 +12956,7 @@ export const useDrwStore = defineStore('drwStore', {
 						}
 					});
 				} catch (e) {
-					console.log("loop end : ", e.message);
+					//console.log("loop end : ", e.message);
 				}
 			}
 
@@ -13033,7 +13039,7 @@ export const useDrwStore = defineStore('drwStore', {
 						}
 					});
 				} catch (e) {
-					console.log("loop end : ", e.message);
+					//console.log("loop end : ", e.message);
 				}
 			}
 
@@ -13113,7 +13119,7 @@ export const useDrwStore = defineStore('drwStore', {
 						}
 					});
 				} catch (e) {
-					console.log("loop end : ", e.message);
+					//console.log("loop end : ", e.message);
 				}
 			}
 
@@ -13193,7 +13199,7 @@ export const useDrwStore = defineStore('drwStore', {
 						}
 					});
 				} catch (e) {
-					console.log("loop end : ", e.message);
+					//console.log("loop end : ", e.message);
 				}
 			}
 

@@ -1,12 +1,15 @@
 <template>
 	<div>
-		<div class="ball-area">
-			<ul class="ball-list">
-				<li class="ball-item" v-for="item in numbers" :key="item">
-					<span class="ball-645 ball-645-medium" :class="'ball-' + getGroup(item.number)">{{item.number}}</span>
-				</li>
-			</ul>
-		</div>
+		<article class="article-area" v-for="recommend in recommends" :key="recommend">
+			<div class="ball-area">
+				<ul class="ball-list">
+					<li class="ball-item" v-for="item in recommend.numbers" :key="item">
+						<span class="ball-645 ball-645-medium" :class="'ball-' + getGroup(item.number)">{{item.number}}</span>
+					</li>
+				</ul>
+			</div>
+		</article>
+		
 		<div class="btn-area btn-area-center">
 			<button class="btn-primary btn-small" @click="$emit('close')">닫기</button>
 		</div>
@@ -28,8 +31,6 @@
 	const recommendStore = useRecommendStore();
 	const drwStore = useDrwStore();
 
-	const numbers = ref([]);
-
 	// 제외 번호
 	const _exceptionNumber = exceptionStore.numbers;
 	// 고정 번호
@@ -50,19 +51,38 @@
 	// 고정번호를 제외한 나머지 번호 갯수
 	const _cnt = 6 - _fixedNumber.length;
 
-	for(let i=0;i<_cnt;i++) {
-		let _number = getRandomElement(_newTotalNumbers);
-		_newTotalNumbers = _newTotalNumbers.filter(item => item !== _number);
-		const _numberObj = {
-			number:_number,
+	// 추천 번호 리스트
+	const recommends = ref([]);
+	
+	for( let j=0;j<1000;j++){
+		let _list = [..._newTotalNumbers];
+		let _numbers = [];
+		for(let i=0;i<_cnt;i++) {
+			let _number = getRandomElement(_list);
+			_list = _list.filter(item => item !== _number);
+			const _numberObj = {
+				number:_number,
+			}
+			_numbers.push(_numberObj);
 		}
-		numbers.value.push(_numberObj);
+
+		// 고정 번호 추가.
+		_fixedNumber.forEach(item=>{
+			_numbers.push({
+				number:item
+			})
+		})
+		_numbers.sort((a, b) => a.number - b.number);
+
+		const _recommend = {
+			"numbers":_numbers
+		};
+
+		recommends.value.push(_recommend);
+		recommendStore.addRecommend(_numbers,_nextDrw);
 	}
 
-	numbers.value.push(..._fixedNumber);
-	numbers.value.sort((a, b) => a.number - b.number);
-
-	recommendStore.addRecommend(numbers,_nextDrw);
+	
 
 	// 번호 그룹 계산 함수
 	function getGroup(n) {
@@ -82,7 +102,7 @@
 	}
 
 	onMounted(() => {
-		console.log("###### 번호 뽑기 onMounted" );
+		//console.log("###### 번호 뽑기 onMounted" );
 	});
 </script>
 

@@ -39,6 +39,9 @@
         border-radius: 2rem;
         @include text-D1-Regular(color-text-primary);
     }
+    &-disable{
+        opacity: 0.3;
+    }
 }
 
 .ball-1{
