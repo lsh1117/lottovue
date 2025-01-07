@@ -244,15 +244,15 @@
  * - 두 줄 이상의 문장형 텍스트에 스타일로 사용
  */
 @mixin text-H3-Bold($color, $pxType: false, $maxSize: false) {
-    @include font-rem-package(22, 136.364%, 700, $color, $pxType, $maxSize); // line-height : 30px
+    @include font-rem-package(18, 136.364%, 700, $color, $pxType, $maxSize); // line-height : 30px
 }
 
 @mixin text-H3-SemiBold($color, $pxType: false, $maxSize: false) {
-    @include font-rem-package(22, 136.364%, 600, $color, $pxType, $maxSize); // line-height : 30px
+    @include font-rem-package(18, 136.364%, 600, $color, $pxType, $maxSize); // line-height : 30px
 }
 
 @mixin text-H3-Medium($color, $pxType: false, $maxSize: false) {
-    @include font-rem-package(22, 136.364%, 500, $color, $pxType, $maxSize); // line-height : 30px
+    @include font-rem-package(18, 136.364%, 500, $color, $pxType, $maxSize); // line-height : 30px
 }
 
 /* H4
@@ -318,70 +318,70 @@
 
 /* B1 */
 @mixin text-B1-Bold($color, $pxType: false, $maxSize: false) {
-    @include font-rem-package(15, 140%, 700, $color, $pxType, $maxSize); // line-height : 21px
+    @include font-rem-package(14, 140%, 700, $color, $pxType, $maxSize); // line-height : 21px
 }
 
 @mixin text-B1-SemiBold($color, $pxType: false, $maxSize: false) {
-    @include font-rem-package(15, 140%, 600, $color, $pxType, $maxSize); // line-height : 21px
+    @include font-rem-package(14, 140%, 600, $color, $pxType, $maxSize); // line-height : 21px
 }
 
 @mixin text-B1-Medium($color, $pxType: false, $maxSize: false) {
-    @include font-rem-package(15, 140%, 500, $color, $pxType, $maxSize); // line-height : 21px
+    @include font-rem-package(14, 140%, 500, $color, $pxType, $maxSize); // line-height : 21px
 }
 
 @mixin text-B1-Regular($color, $pxType: false, $maxSize: false) {
-    @include font-rem-package(15, 140%, 400, $color, $pxType, $maxSize); // line-height : 21px
+    @include font-rem-package(14, 140%, 400, $color, $pxType, $maxSize); // line-height : 21px
 }
 
 /* B2 */
 @mixin text-B2-Bold($color, $pxType: false, $maxSize: false) {
-    @include font-rem-package(14, 1.429, 700, $color, $pxType, $maxSize); // line-height : 20px
+    @include font-rem-package(12, 1.429, 700, $color, $pxType, $maxSize); // line-height : 20px
 }
 
 @mixin text-B2-SemiBold($color, $pxType: false, $maxSize: false) {
-    @include font-rem-package(14, 1.429, 600, $color, $pxType, $maxSize); // line-height : 20px
+    @include font-rem-package(12, 1.429, 600, $color, $pxType, $maxSize); // line-height : 20px
 }
 
 @mixin text-B2-Medium($color, $pxType: false, $maxSize: false) {
-    @include font-rem-package(14, 1.429, 500, $color, $pxType, $maxSize); // line-height : 20px
+    @include font-rem-package(12, 1.429, 500, $color, $pxType, $maxSize); // line-height : 20px
 }
 
 @mixin text-B2-Regular($color, $pxType: false, $maxSize: false) {
-    @include font-rem-package(14, 1.429, 400, $color, $pxType, $maxSize); // line-height : 20px
+    @include font-rem-package(12, 1.429, 400, $color, $pxType, $maxSize); // line-height : 20px
 }
 
 /* D1 */
 @mixin text-D1-Bold($color, $pxType: false, $maxSize: false) {
-    @include font-rem-package(13, 1.385, 700, $color, $pxType, $maxSize); // line-height : 18px
+    @include font-rem-package(12, 1.385, 700, $color, $pxType, $maxSize); // line-height : 18px
 }
 
 @mixin text-D1-SemiBold($color, $pxType: false, $maxSize: false) {
-    @include font-rem-package(13, 1.385, 600, $color, $pxType, $maxSize); // line-height : 18px
+    @include font-rem-package(12, 1.385, 600, $color, $pxType, $maxSize); // line-height : 18px
 }
 
 @mixin text-D1-Medium($color, $pxType: false, $maxSize: false){
-    @include font-rem-package(13, 1.385, 500, $color, $pxType, $maxSize); // line-height : 18px
+    @include font-rem-package(12, 1.385, 500, $color, $pxType, $maxSize); // line-height : 18px
 }
 
 @mixin text-D1-Regular($color, $pxType: false, $maxSize: false) {
-    @include font-rem-package(13, 1.385, 400, $color, $pxType, $maxSize); // line-height : 18px
+    @include font-rem-package(12, 1.385, 400, $color, $pxType, $maxSize); // line-height : 18px
 }
 
 /* D2 */
 @mixin text-D2-Bold($color, $pxType: false, $maxSize: false) {
-    @include font-rem-package(12, 1.334, 700, $color, $pxType, $maxSize); // line-height : 16px
+    @include font-rem-package(11, 1.334, 700, $color, $pxType, $maxSize); // line-height : 16px
 }
 
 @mixin text-D2-SemiBold($color, $pxType: false, $maxSize: false) {
-    @include font-rem-package(12, 1.334, 600, $color, $pxType, $maxSize); // line-height : 16px
+    @include font-rem-package(11, 1.334, 600, $color, $pxType, $maxSize); // line-height : 16px
 }
 
 @mixin text-D2-Medium($color, $pxType: false, $maxSize: false) {
-    @include font-rem-package(12, 1.334, 500, $color, $pxType, $maxSize); // line-height : 16px
+    @include font-rem-package(11, 1.334, 500, $color, $pxType, $maxSize); // line-height : 16px
 }
 
 @mixin text-D2-Regular($color, $pxType: false, $maxSize: false) {
-    @include font-rem-package(12, 1.334, 400, $color, $pxType, $maxSize); // line-height : 16px
+    @include font-rem-package(11, 1.334, 400, $color, $pxType, $maxSize); // line-height : 16px
 }
 
 /* D3 */

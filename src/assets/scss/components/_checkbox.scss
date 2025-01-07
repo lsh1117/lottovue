@@ -38,7 +38,8 @@
             height:100%;
             border-radius: 50%;
             text-align: center;
-            @include text-B1-Regular(color-text-primary);
+            @include text-B1-Regular(color-text-primary,!important);
+            @include themeProperty(color, color-text-primary, !important);
             line-height: 3.8rem;
         }
     }

@@ -35,6 +35,7 @@
                     margin-left:20px;
                     transform: translateY(-50%);
                     border-radius:20px;
+                    padding-bottom:20px;
                     .popup-header{
                         padding:20px;
                         padding-right:40px;
@@ -42,6 +43,8 @@
                     .popup-body{
                         width:100%;
                         padding:0px 20px 20px 20px;
+                        max-height: 65dvh;
+                        overflow-y: auto;
                     }
                     .popup-footer{
                         position:absolute;
@@ -53,6 +56,14 @@
                 }
                 @include themeProperty(background-color, color-bg-white-primary);
                 z-index: 1200;
+
+                span, label, p, strong{
+                    @include themeProperty(color, color-text-tertiary);
+                }
+                select{
+                    @include text-B1-Medium(color-text-tertiary);
+                    @include themeProperty(background-color, color-bg-white-primary);
+                }
             }
 
             .popup-overlay{
@@ -66,4 +77,5 @@
             }
         }
     }
+    
 }

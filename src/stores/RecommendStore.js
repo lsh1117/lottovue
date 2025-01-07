@@ -34,8 +34,13 @@ export const useRecommendStore = defineStore('recommendStore', {
 		getRecommends(drw) {
 			let _recommends = [];
 			this.collections.forEach((item) => {
-				if(item.drw === drw){
+				if(drw === undefined){
 					_recommends.push(item);
+				}
+				else{
+					if(item.drw === drw){
+						_recommends.push(item);
+					}
 				}
 			});
 			return _recommends;

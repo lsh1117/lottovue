@@ -3,7 +3,7 @@
 		<div class="ball-area">
 			<ul class="ball-list">
 				<li class="ball-item" v-for="item in numbers" :key="item">
-					<span class="ball-645 ball-645-small" :class="'ball-' + getGroup(item.number)">{{item.number}}</span>
+					<span class="ball-645 ball-645-medium" :class="'ball-' + getGroup(item.number)">{{item.number}}</span>
 				</li>
 			</ul>
 		</div>

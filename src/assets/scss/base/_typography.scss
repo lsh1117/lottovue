@@ -17,13 +17,13 @@ h4{
 
 label{
     &.label-big{
-        @include text-H3-Bold(color-text-primary);
+        @include text-B1-Bold(color-text-primary);
         strong{
-            @include text-H3-Bold(color-text-blue-basic-enabled);
+            @include text-B1-Bold(color-text-blue-basic-enabled);
         }
     }
     &.label-medium{
-        @include text-B1-Bold(color-text-primary);
+        @include text-B2-Bold(color-text-primary);
     }
 }
 

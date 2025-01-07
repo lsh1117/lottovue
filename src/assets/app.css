@@ -365,7 +365,7 @@ body.hidden {
 }
 
 h4.title-big {
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   line-height: 136.364%;
   font-weight: 700;
   font-family: "Pretendard";
@@ -376,7 +376,7 @@ body[data-color-mode=dark] h4.title-big {
 }
 
 h4.title-big strong {
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   line-height: 136.364%;
   font-weight: 700;
   font-family: "Pretendard";
@@ -398,8 +398,8 @@ body[data-color-mode=dark] h4.title-medium {
 }
 
 label.label-big {
-  font-size: 2.2rem;
-  line-height: 136.364%;
+  font-size: 1.4rem;
+  line-height: 140%;
   font-weight: 700;
   font-family: "Pretendard";
   color: rgb(255, 255, 255);
@@ -409,8 +409,8 @@ body[data-color-mode=dark] label.label-big {
 }
 
 label.label-big strong {
-  font-size: 2.2rem;
-  line-height: 136.364%;
+  font-size: 1.4rem;
+  line-height: 140%;
   font-weight: 700;
   font-family: "Pretendard";
   color: rgb(8, 113, 243);
@@ -420,8 +420,8 @@ body[data-color-mode=dark] label.label-big strong {
 }
 
 label.label-medium {
-  font-size: 1.5rem;
-  line-height: 140%;
+  font-size: 1.2rem;
+  line-height: 1.429;
   font-weight: 700;
   font-family: "Pretendard";
   color: rgb(255, 255, 255);
@@ -431,7 +431,7 @@ body[data-color-mode=dark] label.label-medium {
 }
 
 .text-description-medium {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   line-height: 1.385;
   font-weight: 500;
   font-family: "Pretendard";
@@ -461,6 +461,11 @@ body[data-color-mode=dark] .text-description-medium {
 }
 body[data-color-mode=dark] .fixed-bottom {
   background-color: rgb(1, 10, 19);
+}
+
+.fixed-bottom .btn-area {
+  margin-top: 0;
+  padding: 20px;
 }
 
 /* layout */
@@ -502,7 +507,7 @@ body[data-color-mode=dark] .header-area {
           align-items: center;
 }
 .header-area h1 span {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   line-height: 140%;
   font-weight: 700;
   font-family: "Pretendard";
@@ -576,7 +581,7 @@ body[data-color-mode=dark] .header-area .gnb ul.gnb-list li.gnb-item > .btn-gnb.
           align-items: center;
 }
 .footer-area .copyright-area p {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   line-height: 1.429;
   font-weight: 500;
   font-family: "Pretendard";
@@ -586,12 +591,19 @@ body[data-color-mode=dark] .footer-area .copyright-area p {
   color: rgba(248, 249, 252, 0.9);
 }
 
+article.article-area {
+  margin-top: 20px;
+}
+article.article-area:first-child {
+  margin: 0;
+}
+
 /* components, templates, pages 각 항목들의 하위 파일목록 각각 import */
 .btn-gnb {
   display: block;
   width: 100%;
   height: 100%;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   line-height: 140%;
   font-weight: 400;
   font-family: "Pretendard";
@@ -615,7 +627,7 @@ body[data-color-mode=dark] .btn-primary {
   padding: 0 2rem;
   width: auto;
   height: 3.5rem;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   line-height: 1.429;
   font-weight: 600;
   font-family: "Pretendard";
@@ -628,7 +640,7 @@ body[data-color-mode=dark] .btn-small {
 .btn-large {
   width: 100%;
   height: 3.5rem;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   line-height: 140%;
   font-weight: 600;
   font-family: "Pretendard";
@@ -653,7 +665,8 @@ body[data-color-mode=dark] .btn-close {
 }
 
 .btn-area {
-  padding: 20px;
+  margin-top: 20px;
+  padding: 0;
 }
 .btn-area-center {
   display: -webkit-box;
@@ -705,6 +718,7 @@ body[data-color-mode=dark] .btn-close {
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
   border-radius: 20px;
+  padding-bottom: 20px;
 }
 .popup-container .popup-area .popup-content.popup-type-dialog .popup-header {
   padding: 20px;
@@ -713,6 +727,8 @@ body[data-color-mode=dark] .btn-close {
 .popup-container .popup-area .popup-content.popup-type-dialog .popup-body {
   width: 100%;
   padding: 0px 20px 20px 20px;
+  max-height: 65dvh;
+  overflow-y: auto;
 }
 .popup-container .popup-area .popup-content.popup-type-dialog .popup-footer {
   position: absolute;
@@ -722,6 +738,29 @@ body[data-color-mode=dark] .btn-close {
   height: 40px;
 }
 body[data-color-mode=dark] .popup-container .popup-area .popup-content {
+  background-color: rgb(50, 50, 50);
+}
+
+.popup-container .popup-area .popup-content span, .popup-container .popup-area .popup-content label, .popup-container .popup-area .popup-content p, .popup-container .popup-area .popup-content strong {
+  color: rgb(2, 2, 2);
+}
+body[data-color-mode=dark] .popup-container .popup-area .popup-content span, body[data-color-mode=dark] .popup-container .popup-area .popup-content label, body[data-color-mode=dark] .popup-container .popup-area .popup-content p, body[data-color-mode=dark] .popup-container .popup-area .popup-content strong {
+  color: rgb(22, 22, 22);
+}
+
+.popup-container .popup-area .popup-content select {
+  font-size: 1.4rem;
+  line-height: 140%;
+  font-weight: 500;
+  font-family: "Pretendard";
+  color: rgb(2, 2, 2);
+  background-color: rgb(255, 255, 255);
+}
+body[data-color-mode=dark] .popup-container .popup-area .popup-content select {
+  color: rgb(22, 22, 22);
+}
+
+body[data-color-mode=dark] .popup-container .popup-area .popup-content select {
   background-color: rgb(50, 50, 50);
 }
 
@@ -777,15 +816,20 @@ body[data-color-mode=dark] .checkbox-area input:disabled + label::after {
   height: 100%;
   border-radius: 50%;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 14px;
   line-height: 140%;
   font-weight: 400;
   font-family: "Pretendard";
   color: rgb(255, 255, 255);
+  color: rgb(255, 255, 255) !important;
   line-height: 3.8rem;
 }
 body[data-color-mode=dark] .checkbox-area label {
   color: rgb(22, 22, 22);
+}
+
+body[data-color-mode=dark] .checkbox-area label {
+  color: rgb(22, 22, 22) !important;
 }
 
 .checkbox .ball-645 {
@@ -854,7 +898,7 @@ body[data-color-mode=dark] .checkbox .ball-645.ball-5 {
   padding: 0 10px;
   width: 100%;
   text-align: right;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   line-height: 140%;
   font-weight: 500;
   font-family: "Pretendard";
@@ -920,7 +964,7 @@ body[data-color-mode=dark] .accordion .accordion-body {
   width: 4rem;
 }
 .chart .chart-bar .chart-bar-label .ball-645 {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   line-height: 1.334;
   font-weight: 400;
   font-family: "Pretendard";
@@ -946,7 +990,7 @@ body[data-color-mode=dark] .chart .chart-bar .chart-bar-volum {
 }
 
 .chart .chart-bar .chart-bar-volum span {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   line-height: 140%;
   font-weight: 400;
   font-family: "Pretendard";
@@ -969,7 +1013,7 @@ body[data-color-mode=dark] .chart .chart-bar .chart-bar-volum span {
 }
 
 .title-h3 span {
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   line-height: 136.364%;
   font-weight: 700;
   font-family: "Pretendard";
@@ -1028,21 +1072,48 @@ body[data-color-mode=dark] .box.box-round-bg {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   line-height: 140%;
   font-weight: 400;
   font-family: "Pretendard";
   color: rgb(255, 255, 255);
   text-shadow: 1px 1px 2px #222;
+  color: rgb(255, 255, 255) !important;
 }
 body[data-color-mode=dark] .ball-645 {
   color: rgb(22, 22, 22);
 }
 
-.ball-645-small {
+body[data-color-mode=dark] .ball-645 {
+  color: rgb(22, 22, 22) !important;
+}
+
+.ball-645-medium {
   width: 3rem;
   height: 3rem;
   border-radius: 3rem;
+  font-size: 1.4rem;
+  line-height: 140%;
+  font-weight: 400;
+  font-family: "Pretendard";
+  color: rgb(255, 255, 255);
+}
+body[data-color-mode=dark] .ball-645-medium {
+  color: rgb(22, 22, 22);
+}
+
+.ball-645-small {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 2rem;
+  font-size: 1.2rem;
+  line-height: 1.385;
+  font-weight: 400;
+  font-family: "Pretendard";
+  color: rgb(255, 255, 255);
+}
+body[data-color-mode=dark] .ball-645-small {
+  color: rgb(22, 22, 22);
 }
 
 .ball-1 {
@@ -1153,8 +1224,13 @@ body[data-color-mode=dark] .nums > .num-bonus::after {
           justify-content: center;
 }
 
+.recommend-list {
+  max-height: 160px;
+  overflow-y: auto;
+}
+
 .message-error {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   line-height: 1.429;
   font-weight: 400;
   font-family: "Pretendard";
@@ -1162,6 +1238,156 @@ body[data-color-mode=dark] .nums > .num-bonus::after {
 }
 body[data-color-mode=dark] .message-error {
   color: #F2545C;
+}
+
+.ui-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.ui-item__label {
+  width: auto;
+}
+.ui-item__content {
+  width: 100%;
+}
+
+.table-list {
+  border-top: 2px solid transparent;
+  border-color: rgb(73, 80, 87);
+}
+body[data-color-mode=dark] .table-list {
+  border-color: rgb(197, 202, 206);
+}
+
+.table-list tr th {
+  padding: 2px;
+  background-color: rgba(130, 149, 166, 0.11);
+  border-bottom: 1px solid transparent;
+  border-left: 1px solid transparent;
+  border-color: rgb(109, 116, 123) !important;
+}
+body[data-color-mode=dark] .table-list tr th {
+  background-color: rgba(199, 228, 255, 0.11);
+}
+
+.table-list tr th:last-child {
+  border-right: 1px solid transparent;
+}
+body[data-color-mode=dark] .table-list tr th {
+  border-color: rgb(173, 179, 184) !important;
+}
+
+.table-list tr th span {
+  font-size: 1.2rem;
+  line-height: 1.429;
+  font-weight: 700;
+  font-family: "Pretendard";
+  color: rgb(2, 2, 2);
+}
+body[data-color-mode=dark] .table-list tr th span {
+  color: rgb(22, 22, 22);
+}
+
+.table-list tr td {
+  padding: 3px;
+  background-color: rgba(115, 132, 149, 0.05);
+  border-bottom: 1px solid transparent;
+  border-left: 1px solid transparent;
+  border-color: rgb(109, 116, 123) !important;
+}
+body[data-color-mode=dark] .table-list tr td {
+  background-color: rgba(208, 234, 241, 0.05);
+}
+
+.table-list tr td:last-child {
+  border-right: 1px solid transparent;
+}
+body[data-color-mode=dark] .table-list tr td {
+  border-color: rgb(173, 179, 184) !important;
+}
+
+.table-list tr td span {
+  font-size: 1.2rem;
+  line-height: 1.385;
+  font-weight: 400;
+  font-family: "Pretendard";
+  color: rgb(2, 2, 2);
+}
+body[data-color-mode=dark] .table-list tr td span {
+  color: rgb(22, 22, 22);
+}
+
+.table-item {
+  border-top: 2px solid transparent;
+  border-color: rgb(73, 80, 87);
+}
+body[data-color-mode=dark] .table-item {
+  border-color: rgb(197, 202, 206);
+}
+
+.table-item tr th {
+  padding: 2px;
+  background-color: rgba(130, 149, 166, 0.11);
+  border-bottom: 1px solid transparent;
+  border-left: 1px solid transparent;
+  border-color: rgb(109, 116, 123) !important;
+}
+body[data-color-mode=dark] .table-item tr th {
+  background-color: rgba(199, 228, 255, 0.11);
+}
+
+.table-item tr th:last-child {
+  border-right: 1px solid transparent;
+}
+body[data-color-mode=dark] .table-item tr th {
+  border-color: rgb(173, 179, 184) !important;
+}
+
+.table-item tr th span {
+  font-size: 1.2rem;
+  line-height: 1.429;
+  font-weight: 700;
+  font-family: "Pretendard";
+  color: rgb(2, 2, 2);
+}
+body[data-color-mode=dark] .table-item tr th span {
+  color: rgb(22, 22, 22);
+}
+
+.table-item tr td {
+  padding: 3px;
+  background-color: rgba(115, 132, 149, 0.05);
+  border-bottom: 1px solid transparent;
+  border-left: 1px solid transparent;
+  border-color: rgb(109, 116, 123) !important;
+}
+body[data-color-mode=dark] .table-item tr td {
+  background-color: rgba(208, 234, 241, 0.05);
+}
+
+.table-item tr td:last-child {
+  border-right: 1px solid transparent;
+}
+body[data-color-mode=dark] .table-item tr td {
+  border-color: rgb(173, 179, 184) !important;
+}
+
+.table-item tr td span {
+  font-size: 1.2rem;
+  line-height: 1.385;
+  font-weight: 400;
+  font-family: "Pretendard";
+  color: rgb(2, 2, 2);
+}
+body[data-color-mode=dark] .table-item tr td span {
+  color: rgb(22, 22, 22);
 }
 
 .GameResultView .section-area .section-header h4 {

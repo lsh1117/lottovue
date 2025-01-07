@@ -12696,7 +12696,7 @@ export const useDrwStore = defineStore('drwStore', {
 			this.numbers = numbers; // 선택된 번호를 저장
 		},
 		getDrwNo(no) {
-			return this.numbers.find(item => item.drwNo === no);
+			return this.numbers.find(item => Number(item.drwNo) === Number(no));
 		},
 		getTotalAppear(numbers){
 			const stats = Array(45).fill(0); // 1~45의 초기 등장 횟수 (0으로 초기화)
