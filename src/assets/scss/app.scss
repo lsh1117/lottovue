@@ -26,3 +26,9 @@
 @import '_templates.scss';
 
 @import '_pages.scss';
+
+.example-area{
+    position:absolute;
+    top:-100000px;
+    left:0;
+}

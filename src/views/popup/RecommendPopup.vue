@@ -54,7 +54,7 @@
 	// 추천 번호 리스트
 	const recommends = ref([]);
 	
-	for( let j=0;j<1000;j++){
+	for( let j=0;j<100;j++){
 		let _list = [..._newTotalNumbers];
 		let _numbers = [];
 		for(let i=0;i<_cnt;i++) {

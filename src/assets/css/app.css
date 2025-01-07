@@ -1420,4 +1420,9 @@ body[data-color-mode=dark] .table-item tr td span, body[data-color-mode=dark] .t
 
 .StatisticsView .section-area .section-header h4 {
   margin-top: 20px;
+}
+.example-area {
+  position: absolute;
+  top: -100000px;
+  left: 0;
 }/*# sourceMappingURL=app.css.map */

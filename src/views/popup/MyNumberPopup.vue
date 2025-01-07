@@ -33,8 +33,10 @@
 								<div class="ball-area">
 									<ul class="ball-list">
 										<li class="ball-item" v-for="item in recommend.numbers" :key="item">
-											<span  v-if="item.matching" class="ball-645 ball-645-small" :class="'ball-' + getGroup(item.number)">{{item.number}}</span>
-											<span  v-else class="ball-645 ball-645-small ball-645-disable" :class="'ball-' + getGroup(item.number)">{{item.number}}</span>
+											<span v-if="item.matching" class="ball-645 ball-645-small"
+												:class="'ball-' + getGroup(item.number)">{{item.number}}</span>
+											<span v-else class="ball-645 ball-645-small ball-645-disable"
+												:class="'ball-' + getGroup(item.number)">{{item.number}}</span>
 										</li>
 									</ul>
 								</div>
@@ -46,7 +48,7 @@
 				</table>
 			</div>
 		</article>
-		
+
 		<article class="article-area">
 			<table class="table-item">
 				<colgroup>
@@ -122,16 +124,48 @@
 			</table>
 		</article>
 
+		<article class="article-area example-area">
+			<div class="recommend-list">
+				<table id="example-table" border="1">
+					<thead>
+						<tr>
+							<th>1번째</th>
+							<th>2번째</th>
+							<th>3번째</th>
+							<th>4번째</th>
+							<th>5번째</th>
+							<th>6번째</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="recommend in recommendList" :key="recommend">
+							<td v-for="item in recommend.numbers" :key="item">
+								{{item.number}}
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</article>
+
 		<div class="btn-area btn-area-center">
 			<button class="btn-primary btn-small" @click="$emit('close')">닫기</button>
+			<button class="btn-primary btn-small" @click="exportTableToExcel('example-table', 'table-data')">엑셀다운받기</button>
 		</div>
 	</div>
 </template>
 
 <script setup>
-	import { onMounted, ref } from "vue";
-	import { useRecommendStore } from "@/stores/RecommendStore";
-	import { useDrwStore } from "@/stores/DrwStore";
+	import {
+		onMounted,
+		ref
+	} from "vue";
+	import {
+		useRecommendStore
+	} from "@/stores/RecommendStore";
+	import {
+		useDrwStore
+	} from "@/stores/DrwStore";
 
 	// 회차 정보
 	const drwStore = useDrwStore();
@@ -172,11 +206,11 @@
 		recommendList.value = recommendStore.getRecommends(selectedDrwNo.value);
 		recommendList.value.forEach(item => {
 			// 회차 정보 마지막 회차와 추천번호 회차와 비교하여 마지막회차 보다 추천번호 회차가 높을경우 추천전 계산
-			if(Number(item.drw) > Number(_lastDrw) ){
+			if (Number(item.drw) > Number(_lastDrw)) {
 				// 결과 발표 안됨
 				item.result = false;
 				//console.log("결과 발표 안됨",item.drw)
-			}else{
+			} else {
 				// 결과 발표 됨
 				//console.log("결과 발표 됨",item.drw)
 				item.result = true;
@@ -185,43 +219,43 @@
 				let _cnt = 0;
 				let _no2 = 0;
 
-				_numbers.forEach(numberObj =>{
-					const _matching = checkMatching(_drw,numberObj.number);
+				_numbers.forEach(numberObj => {
+					const _matching = checkMatching(_drw, numberObj.number);
 					numberObj.matching = _matching;
-					if(_matching){
+					if (_matching) {
 						_cnt++;
-					}else{
+					} else {
 						_no2 = numberObj.number;
 					}
 				});
 
-				if( _cnt === 3){
+				if (_cnt === 3) {
 					no5.value++;
 					item.no = 5;
-				} else if( _cnt === 4){
+				} else if (_cnt === 4) {
 					no4.value++;
 					item.no = 4;
-				} else if( _cnt === 5){
+				} else if (_cnt === 5) {
 					// 2등 여부 체크.
-					if(checkNo2(_drw,_no2)) {
+					if (checkNo2(_drw, _no2)) {
 						no2.value++;
 						item.no = 2;
-					}else{
+					} else {
 						no3.value++;
 						item.no = 3;
 					}
-					
-				} else if( _cnt === 6){
+
+				} else if (_cnt === 6) {
 					no1.value++;
 					item.no = 1;
 
-				} else{
+				} else {
 					no6.value++;
 					item.no = 6;
 					item.won = 0;
 				}
 			}
-			
+
 		});
 
 		totalWon.value += no5.value * 5000;
@@ -229,11 +263,11 @@
 		totalWon.value += no3.value * 1500000;
 		totalWon.value += no2.value * 35000000;
 		totalWon.value += no1.value * 1535000000;
-		
+
 	}
 
-	function checkMatching(drw,number){
-		try{
+	function checkMatching(drw, number) {
+		try {
 			/*
 			const _drwNo = {
 				"drwNo": "1150",
@@ -256,19 +290,18 @@
 				Number(_drwNo.drwtNo5),
 				Number(_drwNo.drwtNo6),
 			]
-			if(_numbers.includes(number)){
+			if (_numbers.includes(number)) {
 				return true;
-			}
-			else{
+			} else {
 				return false;
 			}
-		}catch(e){
+		} catch (e) {
 			return null;
 		}
 	}
 
-	function checkNo2(drw,number){
-		try{
+	function checkNo2(drw, number) {
+		try {
 			/*
 			const _drwNo = {
 				"drwNo": "1150",
@@ -284,17 +317,16 @@
 			*/
 			const _drwNo = drwStore.getDrwNo(drw);
 
-			console.log("### 2등 체크 여부 보너스 번호 : ",Number(_drwNo.bnusNo))
-			console.log("### 2등 체크 여부 선택 번호 : ",number)
-			
-			if(Number(_drwNo.bnusNo) === number ){
+			console.log("### 2등 체크 여부 보너스 번호 : ", Number(_drwNo.bnusNo))
+			console.log("### 2등 체크 여부 선택 번호 : ", number)
+
+			if (Number(_drwNo.bnusNo) === number) {
 				return true;
-			}
-			else{
+			} else {
 				return false;
 			}
-			
-		}catch(e){
+
+		} catch (e) {
 			return null;
 		}
 	}
@@ -302,6 +334,46 @@
 	function formatCurrency(amount) {
 		// 숫자를 문자열로 변환하고 정규식을 이용하여 3자리마다 ',' 삽입
 		return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+	}
+
+	function exportTableToExcel(tableID, filename = '') {
+		// 테이블 요소 가져오기
+		const table = document.getElementById(tableID);
+		const rows = table.rows;
+
+		// 엑셀 데이터 생성
+		let excelContent = '<table>';
+		for (let i = 0; i < rows.length; i++) {
+			excelContent += '<tr>';
+			const cells = rows[i].cells;
+			for (let j = 0; j < cells.length; j++) {
+				excelContent += '<td>' + cells[j].innerText + '</td>';
+			}
+			excelContent += '</tr>';
+		}
+		excelContent += '</table>';
+
+		// Blob 생성 및 다운로드
+		const excelFile =
+			'<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">' +
+			'<head><meta charset="UTF-8"><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>Sheet1</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head>' +
+			'<body>' +
+			excelContent +
+			'</body></html>';
+
+		const blob = new Blob([excelFile], {
+			type: 'application/vnd.ms-excel'
+		});
+		const url = URL.createObjectURL(blob);
+
+		// 링크 생성 및 클릭으로 다운로드
+		const a = document.createElement('a');
+		a.href = url;
+		a.download = filename ? filename + '.xls' : 'download.xls';
+		a.click();
+
+		// 메모리 해제
+		URL.revokeObjectURL(url);
 	}
 
 	onMounted(() => {
