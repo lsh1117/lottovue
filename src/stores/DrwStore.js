@@ -12694,7 +12694,6 @@ export const useDrwStore = defineStore('drwStore', {
 				"drwtNo6": "40",
 				"bnusNo": "16"
 			},
-
 		],
 	}),
 	actions: {

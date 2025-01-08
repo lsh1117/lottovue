@@ -1,29 +1,31 @@
 <template>
 	<div>
-		<div class="ball-container">
-			<!-- 번호 볼 목록 -->
-			<div class="box-area">
-				<div class="box">
-					<div class="ball-area">
-						<ul class="ball-list">
-							<li class="ball-item" v-for="number in numbers" :key="number">
-								<div class="checkbox-area ball-645" :class="'ball-' + getGroup(number)">
-									<input type="checkbox" :id="'ball-' + number" :value="number"
-										v-model="selectedNumbers"
-										:disabled="!selectedNumbers.includes(number) && selectedNumbers.length >= maxSelection"
-										@change="onCheckedHandler" />
-									<label :for="'ball-' + number">{{ number }}</label>
-								</div>
-							</li>
-						</ul>
+		<div class="scroll-area">
+			<div class="ball-container">
+				<!-- 번호 볼 목록 -->
+				<div class="box-area">
+					<div class="box">
+						<div class="ball-area">
+							<ul class="ball-list">
+								<li class="ball-item" v-for="number in numbers" :key="number">
+									<div class="checkbox-area ball-645" :class="'ball-' + getGroup(number) + ' ' + checkException(number)">
+										<input type="checkbox" :id="'ball-' + number" :value="number"
+											v-model="selectedNumbers"
+											:disabled="!selectedNumbers.includes(number) && selectedNumbers.length >= maxSelection"
+											@change="onCheckedHandler" />
+										<label :for="'ball-' + number">{{ number }}</label>
+									</div>
+								</li>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="message-error-area" v-if="isMaxSelection">
-			<p>
-				<span class="message-error">최대 <strong>{{ maxSelection }}</strong> 개의 번호만 선택할 수 있습니다.</span>
-			</p>
+			<div class="message-error-area" v-if="isMaxSelection">
+				<p>
+					<span class="message-error">최대 <strong>{{ maxSelection }}</strong> 개의 번호만 선택할 수 있습니다.</span>
+				</p>
+			</div>
 		</div>
 		<div class="btn-area btn-area-center">
 			<button class="btn-primary btn-small" @click="onConfirmHandler">확인</button>
@@ -37,15 +39,15 @@
 		ref,
 		computed
 	} from "vue";
-	import {
-		useFixedStore
-	} from "@/stores/FixedStore";
+	import { useExceptionStore } from "@/stores/ExceptionStore";
+	import { useFixedStore } from "@/stores/FixedStore";
 
 	// Emit 이벤트 정의
 	const emit = defineEmits(["close"]);
 
 	// Pinia store 가져오기
 	const fixedStore = useFixedStore();
+	const exceptionStore = useExceptionStore();
 
 	// Prop 정의
 	const props = defineProps({
@@ -112,6 +114,16 @@
 
 		// 팝업 닫기 이벤트 emit
 		emit("close");
+	}
+
+	function checkException(number){
+		const _numbers = [...exceptionStore.numbers];
+		if(_numbers.includes(number)){
+			return 'disabled';
+		}
+		else{
+			return '';
+		}
 	}
 
 </script>

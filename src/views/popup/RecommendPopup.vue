@@ -1,14 +1,16 @@
 <template>
 	<div>
-		<article class="article-area" v-for="recommend in recommends" :key="recommend">
-			<div class="ball-area">
-				<ul class="ball-list">
-					<li class="ball-item" v-for="item in recommend.numbers" :key="item">
-						<span class="ball-645 ball-645-medium" :class="'ball-' + getGroup(item.number)">{{item.number}}</span>
-					</li>
-				</ul>
-			</div>
-		</article>
+		<div class="scroll-area">
+			<article class="article-area" v-for="recommend in recommends" :key="recommend">
+				<div class="ball-area">
+					<ul class="ball-list">
+						<li class="ball-item" v-for="item in recommend.numbers" :key="item">
+							<span class="ball-645 ball-645-medium" :class="'ball-' + getGroup(item.number)">{{item.number}}</span>
+						</li>
+					</ul>
+				</div>
+			</article>
+		</div>
 		
 		<div class="btn-area btn-area-center">
 			<button class="btn-primary btn-small" @click="$emit('close')">닫기</button>
@@ -53,8 +55,11 @@
 
 	// 추천 번호 리스트
 	const recommends = ref([]);
+
+	// 추천 번호 갯수 정의
+	const _recommendCnt = 10;
 	
-	for( let j=0;j<100;j++){
+	for( let j=0;j<_recommendCnt;j++){
 		let _list = [..._newTotalNumbers];
 		let _numbers = [];
 		for(let i=0;i<_cnt;i++) {

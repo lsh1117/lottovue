@@ -42,31 +42,19 @@
             @include themeProperty(color, color-text-primary, !important);
             line-height: 3.8rem;
         }
-    }
+        &.ball-645{
+            &.disabled{
+                pointer-events: none;
 
-    .ball-645{
-        width:4rem;
-        height:4rem;
-        border-radius: 4rem;
-        display:flex;
-        align-items: center;
-        justify-content: center;
-        text-shadow: 1px 1px 2px #222;
+                label{
 
-        &.ball-1{
-            @include themeProperty(background-color, color-ball-01);
-        }
-        &.ball-2{
-            @include themeProperty(background-color, color-ball-02);
-        }
-        &.ball-3{
-            @include themeProperty(background-color, color-ball-03);
-        }
-        &.ball-4{
-            @include themeProperty(background-color, color-ball-04);
-        }
-        &.ball-5{
-            @include themeProperty(background-color, color-ball-05);
+                    @include themeProperty(background-color, color-ball-disabled);
+                    &::after{
+                        @include themeProperty(background-color, color-ball-disabled);
+                    }
+                    
+                }
+            }
         }
     }
 }

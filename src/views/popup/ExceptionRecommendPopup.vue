@@ -1,9 +1,11 @@
 <template>
 	<div>
-		<div class="text-area">
-			<p v-for="message in messages" :key="message">
-				<span class="text-normal">{{ message }}</span>
-			</p>
+		<div class="scroll-area">
+			<div class="text-area">
+				<p v-for="message in messages" :key="message">
+					<span class="text-normal">{{ message }}</span>
+				</p>
+			</div>
 		</div>
 		<div class="btn-area btn-area-center">
 			<button class="btn-primary btn-small" @click="$emit('close')">닫기</button>
@@ -100,17 +102,25 @@
 		let _max = {count:0};
 		let _min = {count:100};
 		let _totalAppear = [];
+		let _exceptions = [];
 
 		// 최근 100회 동안 가장 많이 나왔던 횟수 25, 가장 적게 나왔던 횟수 5
+		// 20번 이상 나온 번호 제외 추천
 		let _lastNumbers = drwStore.numbers.slice(0,100);
 
 		_totalAppear = drwStore.getTotalAppear(_lastNumbers);
 		_totalAppear.sort((a, b) => b.count - a.count);
 
+		_totalAppear.forEach(item=>{
+			if(Number(item.count) > 19){
+				_exceptions.push(item.number);
+			}
+		})
+
 		_max = _totalAppear[0];
 		_min = _totalAppear[44];
 
-		const _message = _max.number + " 번 : 최근 100회동안 " + _max.count + "번 등장으로 가장많이 나왔음.";
+		const _message = _exceptions.join() + " : 최근 100회동안 " + "20번 이상 등장으로 많이 나왔음.";
 		return _message;
 	}
 

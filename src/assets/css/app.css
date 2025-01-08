@@ -726,8 +726,10 @@ body[data-color-mode=dark] .btn-close {
 }
 .popup-container .popup-area .popup-content.popup-type-dialog .popup-body {
   width: 100%;
+}
+.popup-container .popup-area .popup-content.popup-type-dialog .popup-body .scroll-area {
   padding: 0px 20px 20px 20px;
-  max-height: 65dvh;
+  max-height: 50dvh;
   overflow-y: auto;
 }
 .popup-container .popup-area .popup-content.popup-type-dialog .popup-footer {
@@ -832,54 +834,21 @@ body[data-color-mode=dark] .checkbox-area label {
   color: rgb(22, 22, 22) !important;
 }
 
-.checkbox .ball-645 {
-  width: 4rem;
-  height: 4rem;
-  border-radius: 4rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  text-shadow: 1px 1px 2px #222;
+.checkbox-area.ball-645.disabled {
+  pointer-events: none;
 }
-.checkbox .ball-645.ball-1 {
-  background-color: rgb(251, 196, 0);
+.checkbox-area.ball-645.disabled label {
+  background-color: rgba(43, 43, 43, 0.5);
 }
-body[data-color-mode=dark] .checkbox .ball-645.ball-1 {
-  background-color: rgb(251, 196, 0);
+body[data-color-mode=dark] .checkbox-area.ball-645.disabled label {
+  background-color: rgba(43, 43, 43, 0.5);
 }
 
-.checkbox .ball-645.ball-2 {
-  background-color: rgb(0, 179, 255);
+.checkbox-area.ball-645.disabled label::after {
+  background-color: rgba(43, 43, 43, 0.5);
 }
-body[data-color-mode=dark] .checkbox .ball-645.ball-2 {
-  background-color: rgb(0, 179, 255);
-}
-
-.checkbox .ball-645.ball-3 {
-  background-color: rgb(241, 27, 27);
-}
-body[data-color-mode=dark] .checkbox .ball-645.ball-3 {
-  background-color: rgb(241, 27, 27);
-}
-
-.checkbox .ball-645.ball-4 {
-  background-color: rgb(127, 127, 127);
-}
-body[data-color-mode=dark] .checkbox .ball-645.ball-4 {
-  background-color: rgb(127, 127, 127);
-}
-
-.checkbox .ball-645.ball-5 {
-  background-color: rgb(8, 187, 38);
-}
-body[data-color-mode=dark] .checkbox .ball-645.ball-5 {
-  background-color: rgb(8, 187, 38);
+body[data-color-mode=dark] .checkbox-area.ball-645.disabled label::after {
+  background-color: rgba(43, 43, 43, 0.5);
 }
 
 .select-area {

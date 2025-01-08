@@ -1,153 +1,154 @@
 <template>
 	<div>
-		<!-- 회차 선택 Select -->
-		<article class="article-area">
-			<div class="select-area">
-				<label for="drwSelect" class="select-label label-big">회차 선택</label>
-				<select id="drwSelect" v-model="selectedDrwNo" @change="updateResult">
-					<option v-for="drw in drwList" :key="drw" :value="drw">
-						{{ drw }}회
-					</option>
-				</select>
-			</div>
-		</article>
-		<article class="article-area">
-			<div class="recommend-list">
-				<table class="table-list">
+		<div class="scroll-area">
+			<!-- 회차 선택 Select -->
+			<article class="article-area">
+				<div class="select-area">
+					<label for="drwSelect" class="select-label label-big">회차 선택</label>
+					<select id="drwSelect" v-model="selectedDrwNo" @change="updateResult">
+						<option v-for="drw in drwList" :key="drw" :value="drw">
+							{{ drw }}회
+						</option>
+					</select>
+				</div>
+			</article>
+			<article class="article-area">
+				<div class="recommend-list">
+					<table class="table-list">
+						<colgroup>
+							<col style="width:20%">
+							<col style="width:65%">
+							<col style="width:15%">
+						</colgroup>
+						<thead>
+							<tr>
+								<th><span>회차</span></th>
+								<th><span>번호</span></th>
+								<th><span>결과</span></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr v-for="recommend in recommendList" :key="recommend">
+								<td><span>{{ recommend.drw }}</span><span>회</span></td>
+								<td>
+									<div class="ball-area">
+										<ul class="ball-list">
+											<li class="ball-item" v-for="item in recommend.numbers" :key="item">
+												<span v-if="item.matching" class="ball-645 ball-645-small"
+													:class="'ball-' + getGroup(item.number)">{{item.number}}</span>
+												<span v-else class="ball-645 ball-645-small ball-645-disable"
+													:class="'ball-' + getGroup(item.number)">{{item.number}}</span>
+											</li>
+										</ul>
+									</div>
+								</td>
+								<td v-if="recommend.result"><strong>{{recommend.no}}</strong><span>등</span></td>
+								<td v-else><span>추첨전</span></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</article>
+
+			<article class="article-area">
+				<table class="table-item">
 					<colgroup>
-						<col style="width:20%">
-						<col style="width:65%">
-						<col style="width:15%">
+						<col style="width:30%">
+						<col style="width:35%">
+						<col style="width:35%">
 					</colgroup>
-					<thead>
-						<tr>
-							<th><span>회차</span></th>
-							<th><span>번호</span></th>
-							<th><span>결과</span></th>
-						</tr>
-					</thead>
 					<tbody>
-						<tr v-for="recommend in recommendList" :key="recommend">
-							<td><span>{{ recommend.drw }}</span><span>회</span></td>
+						<tr>
+							<th><span>1등</span></th>
+							<td><span>{{ no1 }}</span></td>
 							<td>
-								<div class="ball-area">
-									<ul class="ball-list">
-										<li class="ball-item" v-for="item in recommend.numbers" :key="item">
-											<span v-if="item.matching" class="ball-645 ball-645-small"
-												:class="'ball-' + getGroup(item.number)">{{item.number}}</span>
-											<span v-else class="ball-645 ball-645-small ball-645-disable"
-												:class="'ball-' + getGroup(item.number)">{{item.number}}</span>
-										</li>
-									</ul>
-								</div>
+								<span>{{ no1 }}</span>
+								<span>원</span>
 							</td>
-							<td v-if="recommend.result"><strong>{{recommend.no}}</strong><span>등</span></td>
-							<td v-else><span>추첨전</span></td>
 						</tr>
-					</tbody>
-				</table>
-			</div>
-		</article>
-
-		<article class="article-area">
-			<table class="table-item">
-				<colgroup>
-					<col style="width:30%">
-					<col style="width:35%">
-					<col style="width:35%">
-				</colgroup>
-				<tbody>
-					<tr>
-						<th><span>1등</span></th>
-						<td><span>{{ no1 }}</span></td>
-						<td>
-							<span>{{ no1 }}</span>
-							<span>원</span>
-						</td>
-					</tr>
-					<tr>
-						<th><span>2등</span></th>
-						<td><span>{{ no2 }}</span></td>
-						<td>
-							<span>{{ no2 }}</span>
-							<span>원</span>
-						</td>
-					</tr>
-					<tr>
-						<th><span>3등</span></th>
-						<td><span>{{ no3 }}</span></td>
-						<td>
-							<span>{{ no3 * 1500000 }}</span>
-							<span>원</span>
-						</td>
-					</tr>
-					<tr>
-						<th><span>4등</span></th>
-						<td><span>{{ no4 }}</span></td>
-						<td>
-							<span>{{ no4*50000 }}</span>
-							<span>원</span>
-						</td>
-					</tr>
-					<tr>
-						<th><span>5등</span></th>
-						<td><span>{{ no5 }}</span></td>
-						<td>
-							<span>{{ no5*5000 }}</span>
-							<span>원</span>
-						</td>
-					</tr>
-					<tr>
-						<th><span>꽝</span></th>
-						<td><span>{{ no6 }}</span></td>
-						<td>
-							<span>0</span>
-							<span>원</span>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</article>
-
-		<article class="article-area">
-			<table class="table-item">
-				<colgroup>
-					<col style="width:30%">
-					<col style="width:70%">
-				</colgroup>
-				<tbody>
-					<tr>
-						<th><span>총 당첨금</span></th>
-						<td><span>{{ formatCurrency(totalWon) }}</span><span>원</span></td>
-					</tr>
-				</tbody>
-			</table>
-		</article>
-
-		<article class="article-area example-area">
-			<div class="recommend-list">
-				<table id="example-table" border="1">
-					<thead>
 						<tr>
-							<th>1번째</th>
-							<th>2번째</th>
-							<th>3번째</th>
-							<th>4번째</th>
-							<th>5번째</th>
-							<th>6번째</th>
+							<th><span>2등</span></th>
+							<td><span>{{ no2 }}</span></td>
+							<td>
+								<span>{{ no2 }}</span>
+								<span>원</span>
+							</td>
 						</tr>
-					</thead>
-					<tbody>
-						<tr v-for="recommend in recommendList" :key="recommend">
-							<td v-for="item in recommend.numbers" :key="item">
-								{{item.number}}
+						<tr>
+							<th><span>3등</span></th>
+							<td><span>{{ no3 }}</span></td>
+							<td>
+								<span>{{ no3 * 1500000 }}</span>
+								<span>원</span>
+							</td>
+						</tr>
+						<tr>
+							<th><span>4등</span></th>
+							<td><span>{{ no4 }}</span></td>
+							<td>
+								<span>{{ no4*50000 }}</span>
+								<span>원</span>
+							</td>
+						</tr>
+						<tr>
+							<th><span>5등</span></th>
+							<td><span>{{ no5 }}</span></td>
+							<td>
+								<span>{{ no5*5000 }}</span>
+								<span>원</span>
+							</td>
+						</tr>
+						<tr>
+							<th><span>꽝</span></th>
+							<td><span>{{ no6 }}</span></td>
+							<td>
+								<span>0</span>
+								<span>원</span>
 							</td>
 						</tr>
 					</tbody>
 				</table>
-			</div>
-		</article>
+			</article>
 
+			<article class="article-area">
+				<table class="table-item">
+					<colgroup>
+						<col style="width:30%">
+						<col style="width:70%">
+					</colgroup>
+					<tbody>
+						<tr>
+							<th><span>총 당첨금</span></th>
+							<td><span>{{ formatCurrency(totalWon) }}</span><span>원</span></td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article class="article-area example-area">
+				<div class="recommend-list">
+					<table id="example-table" border="1">
+						<thead>
+							<tr>
+								<th>1번째</th>
+								<th>2번째</th>
+								<th>3번째</th>
+								<th>4번째</th>
+								<th>5번째</th>
+								<th>6번째</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr v-for="recommend in recommendList" :key="recommend">
+								<td v-for="item in recommend.numbers" :key="item">
+									{{item.number}}
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</article>
+		</div>
 		<div class="btn-area btn-area-center">
 			<button class="btn-primary btn-small" @click="$emit('close')">닫기</button>
 			<button class="btn-primary btn-small" @click="exportTableToExcel('example-table', 'table-data')">엑셀다운받기</button>
@@ -203,6 +204,12 @@
 	function updateResult() {
 		//console.log("##### 회차 변경 시 결과 업데이트 :", selectedDrwNo.value);
 		totalWon.value = 0;
+		no1.value = 0;
+		no2.value = 0;
+		no3.value = 0;
+		no4.value = 0;
+		no5.value = 0;
+		no6.value = 0;
 		recommendList.value = recommendStore.getRecommends(selectedDrwNo.value);
 		recommendList.value.forEach(item => {
 			// 회차 정보 마지막 회차와 추천번호 회차와 비교하여 마지막회차 보다 추천번호 회차가 높을경우 추천전 계산

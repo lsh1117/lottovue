@@ -1,9 +1,11 @@
 <template>
 	<div>
-		<div class="text-area">
-			<p v-for="message in messages" :key="message">
-				<span class="text-normal">{{ message }}</span>
-			</p>
+		<div class="scroll-area">
+			<div class="text-area">
+				<p v-for="message in messages" :key="message">
+					<span class="text-normal">{{ message }}</span>
+				</p>
+			</div>
 		</div>
 		<div class="btn-area btn-area-center">
 			<button class="btn-primary btn-small" @click="$emit('close')">닫기</button>
@@ -41,7 +43,8 @@
 		// 연속으로 미등장한 횟수 가져오기
 		const _notAppearInSuccession = drwStore.getNotAppearInSuccession(drwStore.numbers);
 		// 연속으로 미등장한 횟수중 가장 많이 미등장한 횟수
-		const _cnt = _notAppearInSuccession[0].count;
+		// 연속 140 미등장한 번호는 고정번호로 추천
+		const _cnt = 140;//_notAppearInSuccession[0].count;
 
 		let _message = "";
 		let items = [];
@@ -66,17 +69,25 @@
 		let _max = {count:0};
 		let _min = {count:100};
 		let _totalAppear = [];
+		let _fixeds = [];
 
 		// 최근 100회 동안 가장 많이 나왔던 횟수 25, 가장 적게 나왔던 횟수 5
+		// 5번 이하로 나온 번호는 고정번호로 추천
 		let _lastNumbers = drwStore.numbers.slice(0,100);
 
 		_totalAppear = drwStore.getTotalAppear(_lastNumbers);
 		_totalAppear.sort((a, b) => b.count - a.count);
 
+		_totalAppear.forEach(item=>{
+			if(Number(item.count) < 5){
+				_fixeds.push(item.number);
+			}
+		})
+
 		_max = _totalAppear[0];
 		_min = _totalAppear[44];
 
-		const _message = _min.number + " 번 : 최근 100회동안 " + _min.count + "번 등장으로 가장적게 나왔음.";
+		const _message = _fixeds.join() + " : 최근 100회동안 " + _min.count + "번 등장으로 적게 나왔음.";
 		return _message;
 	}
 </script>
