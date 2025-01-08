@@ -12,6 +12,8 @@
 					</select>
 				</div>
 			</article>
+
+			<!-- 결과 목록 -->
 			<article class="article-area">
 				<div class="recommend-list">
 					<table class="table-list">
@@ -34,10 +36,8 @@
 									<div class="ball-area">
 										<ul class="ball-list">
 											<li class="ball-item" v-for="item in recommend.numbers" :key="item">
-												<span v-if="item.matching" class="ball-645 ball-645-small"
-													:class="'ball-' + getGroup(item.number)">{{item.number}}</span>
-												<span v-else class="ball-645 ball-645-small ball-645-disable"
-													:class="'ball-' + getGroup(item.number)">{{item.number}}</span>
+												<span v-if="item.matching" class="ball-645 ball-645-small" :class="'ball-' + getGroup(item.number)">{{item.number}}</span>
+												<span v-else class="ball-645 ball-645-small ball-645-disable" :class="'ball-' + getGroup(item.number)">{{item.number}}</span>
 											</li>
 										</ul>
 									</div>
@@ -50,6 +50,7 @@
 				</div>
 			</article>
 
+			<!-- 당첨금 확인 -->
 			<article class="article-area">
 				<table class="table-item">
 					<colgroup>
@@ -110,6 +111,7 @@
 				</table>
 			</article>
 
+			<!-- 총 당첨금 -->
 			<article class="article-area">
 				<table class="table-item">
 					<colgroup>
@@ -151,7 +153,7 @@
 		</div>
 		<div class="btn-area btn-area-center">
 			<button class="btn-primary btn-small" @click="$emit('close')">닫기</button>
-			<button class="btn-primary btn-small" @click="exportTableToExcel('example-table', 'table-data')">엑셀다운받기</button>
+			<button class="btn-primary btn-small" @click="exportTableToExcel('example-table', 'table-data.xlsx')">엑셀다운받기</button>
 		</div>
 	</div>
 </template>
@@ -167,6 +169,7 @@
 	import {
 		useDrwStore
 	} from "@/stores/DrwStore";
+	import * as XLSX from 'xlsx';
 
 	// 회차 정보
 	const drwStore = useDrwStore();
@@ -346,6 +349,12 @@
 	function exportTableToExcel(tableID, filename = '') {
 		// 테이블 요소 가져오기
 		const table = document.getElementById(tableID);
+		 // 테이블 데이터를 워크북으로 변환
+		 const workbook = XLSX.utils.table_to_book(table);
+
+		// 엑셀 파일 생성 및 다운로드
+		XLSX.writeFile(workbook, filename);
+		/*
 		const rows = table.rows;
 
 		// 엑셀 데이터 생성
@@ -381,6 +390,7 @@
 
 		// 메모리 해제
 		URL.revokeObjectURL(url);
+		*/
 	}
 
 	onMounted(() => {
