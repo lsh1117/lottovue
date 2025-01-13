@@ -16,6 +16,9 @@ const app = createApp(App);
 // element plus
 
 app.use(ElementPlus)
+app.use(createPinia())
+app.use(router)
+
 
 // Global Properties에 등록
 Object.keys(globalMethods).forEach((method) => {
@@ -25,9 +28,5 @@ Object.keys(globalMethods).forEach((method) => {
 // 카카오 SDK 초기화
 window.Kakao.init('838a5c93a2abc20701620e873c519934'); // JavaScript 키를 여기에 넣으세요.
 console.log('Kakao SDK initialized:', window.Kakao.isInitialized());
-
-
-app.use(createPinia())
-app.use(router)
 
 app.mount('#app')

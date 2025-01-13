@@ -54,6 +54,8 @@
 	// Pinia store 가져오기
 	const drwStore = useDrwStore();
 
+	console.log(drwStore.getNumbers())
+
 	const result = ref(drwStore.getNumbers()[0]);
 
 	//console.log("@@@@@@@@@@",result);

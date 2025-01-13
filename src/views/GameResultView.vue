@@ -65,6 +65,7 @@
 		drwNo: item.drwNo,
 		drwNoDate: item.drwNoDate,
 	})));
+	
 
 	// 선택된 회차 (기본값은 최신 회차로 설정)
 	const selectedDrwNo = ref(drwNumbers.value[0] ?.drwNo);

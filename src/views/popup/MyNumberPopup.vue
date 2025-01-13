@@ -309,6 +309,7 @@
 				return false;
 			}
 		} catch (e) {
+			console.log("error:",e.message);
 			return null;
 		}
 	}
@@ -340,6 +341,7 @@
 			}
 
 		} catch (e) {
+			console.log("error:",e.message);
 			return null;
 		}
 	}
