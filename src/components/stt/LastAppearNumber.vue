@@ -51,7 +51,7 @@
 
 	// 번호 등장 횟수 계산 함수
 	const calculateNumberStats = () => {
-        let _lastNumbers = drwStore.numbers.slice(0,100);
+        let _lastNumbers = drwStore.getNumbers().slice(0,100);
 		return drwStore.getTotalAppear(_lastNumbers);
 	};
 

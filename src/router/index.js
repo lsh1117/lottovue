@@ -28,7 +28,13 @@ const routes = [
       {
         path: 'statistics',
         name: 'StatisticsView',
-        component: () => import(/* webpackChunkName: "contact" */ '../views/StatisticsView.vue'),
+        component: () => import(/* webpackChunkName: "statistics" */ '../views/StatisticsView.vue'),
+        meta: { hidden: true }
+      },
+      {
+        path: 'login',
+        name: 'Login',
+        component: () => import(/* webpackChunkName: "login" */ '../views/LoginView.vue'),
         meta: { hidden: true }
       },
     ],

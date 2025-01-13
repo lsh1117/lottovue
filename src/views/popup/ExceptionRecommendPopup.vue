@@ -36,7 +36,7 @@
 	// 연속 등장 횟수 분석
 	function getAppearInSuccessionUntil(){
 		// 연속 등장 횟수 계산
-		const appearInSuccessionUntil = drwStore.getAppearInSuccessionUntil(drwStore.numbers);
+		const appearInSuccessionUntil = drwStore.getAppearInSuccessionUntil(drwStore.getNumbers());
 		appearInSuccessionUntil.sort((a, b) => b.count - a.count);
 		// 연속 3회 이상 등장한 한 번호 모음
 		let thirdAppears = [];
@@ -63,9 +63,9 @@
 		let _min = {count:100};
 
 		for( let i=0;i<100;i++){
-			let startIndex = (drwStore.numbers.length - 1) - (100+i);
+			let startIndex = (drwStore.getNumbers().length - 1) - (100+i);
 			let endIndex = startIndex + 100;
-			let _lastNumbers = drwStore.numbers.slice(startIndex,endIndex);
+			let _lastNumbers = drwStore.getNumbers().slice(startIndex,endIndex);
 
 			const _totalAppear = drwStore.getTotalAppear(_lastNumbers);
 			_totalAppear.sort((a, b) => b.count - a.count);
@@ -106,7 +106,7 @@
 
 		// 최근 100회 동안 가장 많이 나왔던 횟수 25, 가장 적게 나왔던 횟수 5
 		// 20번 이상 나온 번호 제외 추천
-		let _lastNumbers = drwStore.numbers.slice(0,100);
+		let _lastNumbers = drwStore.getNumbers().slice(0,100);
 
 		_totalAppear = drwStore.getTotalAppear(_lastNumbers);
 		_totalAppear.sort((a, b) => b.count - a.count);

@@ -50,7 +50,7 @@
 
 	// 전체 데이터에서 연속 등장 횟수 계산
 	const appearInSuccession = () => {
-		const draws = drwStore.numbers; // Store에서 당첨 번호들 가져오기
+		const draws = drwStore.getNumbers(); // Store에서 당첨 번호들 가져오기
 		return drwStore.getGroupAppearInSuccession(draws); // 연속 등장 횟수 계산
 	};
 

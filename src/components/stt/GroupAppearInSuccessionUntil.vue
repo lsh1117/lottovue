@@ -52,7 +52,7 @@
 
 	// 전체 데이터에서 현재까지 연속 미등장 횟수 계산
 	const appearInSuccessionUntil = () => {
-		const draws = drwStore.numbers; // Store에서 당첨 번호들 가져오기
+		const draws = drwStore.getNumbers(); // Store에서 당첨 번호들 가져오기
 		return drwStore.getGroupAppearInSuccessionUntil(draws); // 연속 등장 횟수 계산
 	};
 

@@ -59,13 +59,16 @@
 </template>
 
 <script setup>
-	import { onMounted, ref } from 'vue';
+	import { onMounted, ref, getCurrentInstance } from 'vue';
 	import { useEventStore } from '@/stores/EventStore';
 	import { useExceptionStore } from "@/stores/ExceptionStore";
 	import { useFixedStore } from "@/stores/FixedStore";
 	import { useRecommendStore } from "@/stores/RecommendStore";
 	import { useCalculateStore } from "@/stores/CalculateStore";
 	import { useDrwStore } from "@/stores/DrwStore";
+
+	const instance = getCurrentInstance();
+	const _global = instance.appContext.config.globalProperties;
 
 	const eventStore = useEventStore();
 	const exceptionStore = useExceptionStore();
@@ -188,7 +191,7 @@
 		let calculateNumbers = [];
 
 		// 등장 횟수
-		let appearNumber = drwStore.getTotalAppear(drwStore.numbers);
+		let appearNumber = drwStore.getTotalAppear(drwStore.getNumbers());
 		appearNumber.sort((a, b) => b.count - a.count);
 		const appearCnt = appearNumber[0].count;
 		appearNumber.forEach((item) => {
@@ -199,7 +202,7 @@
 		});
 
 		// 현재까지 연속 미등장 횟수
-		let notAppearInSuccession = drwStore.getNotAppearInSuccessionUntil(drwStore.numbers);
+		let notAppearInSuccession = drwStore.getNotAppearInSuccessionUntil(drwStore.getNumbers());
 		notAppearInSuccession.sort((a, b) => b.count - a.count);
 		notAppearInSuccession.forEach((item) => {
 			for(let i=0;i<item.count;i++){
@@ -207,9 +210,30 @@
 			}
 		});
 
+		// 구간별 현재까지 연속 미등장 횟수
+		let notGroupAppearInSuccessionUntil = drwStore.getGroupNotAppearInSuccessionUntil(drwStore.getNumbers());
+		notGroupAppearInSuccessionUntil.sort((a, b) => b.count - a.count);
+
+		notGroupAppearInSuccessionUntil.forEach((item) => {
+			if(item.count > 0){
+				// 가중치 : 미등장 횟수 가중치 만큼 추가
+				const _marginRate = item.count * 10;
+				const _cnt = (item.number<5)?10:5;
+				// 구간별 반복 
+				for( let j=0;j<_cnt;j++){
+					const _number = ( (item.number - 1) * 10 ) + (j+1);
+					//console.log("### 구간별 연속 미등장 추가 번호:",_number);
+					for(let i=0;i<_marginRate;i++){
+						calculateNumbers.push(_number);
+					}
+					
+				}
+			}
+		});
+
 		// 최근 100회 등장 횟수/
 		/*
-		let _lastNumbers = drwStore.getTotalAppear( drwStore.numbers.slice(0,100) );
+		let _lastNumbers = drwStore.getTotalAppear( drwStore.getNumbers().slice(0,100) );
 		_lastNumbers.sort((a, b) => b.count - a.count);
 		const lastCnt = _lastNumbers[0].count;
 		_lastNumbers.forEach((item) => {
@@ -219,8 +243,9 @@
 			}
 		});
 		*/
-
-		calculateStore.setNumbers(calculateNumbers);
+		
+		const _arr = _global.$shuffleArray(calculateNumbers);
+		calculateStore.setNumbers(_arr);
 	}
 
 	onMounted(() => {

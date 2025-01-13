@@ -178,7 +178,7 @@
 		let calculateNumbers = [];
 
 		// 등장 횟수
-		let appearNumber = drwStore.getTotalAppear(drwStore.numbers);
+		let appearNumber = drwStore.getTotalAppear(drwStore.getNumbers());
 		appearNumber.sort((a, b) => b.count - a.count);
 		appearNumber.forEach((item) => {
 			for(let i=0;i<item.count;i++){
@@ -187,7 +187,7 @@
 		});
 
 		// 현재까지 연속 미등장 횟수
-		let notAppearInSuccession = drwStore.getNotAppearInSuccessionUntil(drwStore.numbers);
+		let notAppearInSuccession = drwStore.getNotAppearInSuccessionUntil(drwStore.getNumbers());
 		notAppearInSuccession.sort((a, b) => b.count - a.count);
 		notAppearInSuccession.forEach((item) => {
 			for(let i=0;i<item.count;i++){

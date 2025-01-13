@@ -63,7 +63,7 @@
 							<th><span>1등</span></th>
 							<td><span>{{ no1 }}</span></td>
 							<td>
-								<span>{{ no1 }}</span>
+								<span>{{ $formatCurrency(no1 * $getWinamnt(1)) }}</span>
 								<span>원</span>
 							</td>
 						</tr>
@@ -71,7 +71,7 @@
 							<th><span>2등</span></th>
 							<td><span>{{ no2 }}</span></td>
 							<td>
-								<span>{{ no2 }}</span>
+								<span>{{ $formatCurrency(no2 * $getWinamnt(2)) }}</span>
 								<span>원</span>
 							</td>
 						</tr>
@@ -79,7 +79,7 @@
 							<th><span>3등</span></th>
 							<td><span>{{ no3 }}</span></td>
 							<td>
-								<span>{{ no3 * 1500000 }}</span>
+								<span>{{ $formatCurrency(no3 * $getWinamnt(3)) }}</span>
 								<span>원</span>
 							</td>
 						</tr>
@@ -87,7 +87,7 @@
 							<th><span>4등</span></th>
 							<td><span>{{ no4 }}</span></td>
 							<td>
-								<span>{{ no4*50000 }}</span>
+								<span>{{ $formatCurrency(no4 * $getWinamnt(4)) }}</span>
 								<span>원</span>
 							</td>
 						</tr>
@@ -95,7 +95,7 @@
 							<th><span>5등</span></th>
 							<td><span>{{ no5 }}</span></td>
 							<td>
-								<span>{{ no5*5000 }}</span>
+								<span>{{ $formatCurrency(no5 * $getWinamnt(5)) }}</span>
 								<span>원</span>
 							</td>
 						</tr>
@@ -104,7 +104,6 @@
 							<td><span>{{ no6 }}</span></td>
 							<td>
 								<span>0</span>
-								<span>원</span>
 							</td>
 						</tr>
 					</tbody>
@@ -161,7 +160,8 @@
 <script setup>
 	import {
 		onMounted,
-		ref
+		ref,
+		getCurrentInstance
 	} from "vue";
 	import {
 		useRecommendStore
@@ -171,10 +171,13 @@
 	} from "@/stores/DrwStore";
 	import * as XLSX from 'xlsx';
 
+	const instance = getCurrentInstance();
+	const _global = instance.appContext.config.globalProperties;
+
 	// 회차 정보
 	const drwStore = useDrwStore();
 	// 마지막 회차 번호
-	const _lastDrw = Number(drwStore.numbers[0].drwNo);
+	const _lastDrw = Number(drwStore.getNumbers()[0].drwNo);
 
 	// 추천(뽑기)번호 정보
 	const recommendStore = useRecommendStore();
@@ -216,7 +219,7 @@
 		recommendList.value = recommendStore.getRecommends(selectedDrwNo.value);
 		recommendList.value.forEach(item => {
 			// 회차 정보 마지막 회차와 추천번호 회차와 비교하여 마지막회차 보다 추천번호 회차가 높을경우 추천전 계산
-			if (Number(item.drw) > Number(_lastDrw)) {
+			if (Number(item.drw) > Number(_lastDrw) ) {
 				// 결과 발표 안됨
 				item.result = false;
 				//console.log("결과 발표 안됨",item.drw)
@@ -268,17 +271,17 @@
 
 		});
 
-		totalWon.value += no5.value * 5000;
-		totalWon.value += no4.value * 50000;
-		totalWon.value += no3.value * 1500000;
-		totalWon.value += no2.value * 35000000;
-		totalWon.value += no1.value * 1535000000;
+		totalWon.value += no5.value * _global.$getWinamnt(5);
+		totalWon.value += no4.value * _global.$getWinamnt(4);
+		totalWon.value += no3.value * _global.$getWinamnt(3);
+		totalWon.value += no2.value * _global.$getWinamnt(2);
+		totalWon.value += no1.value * _global.$getWinamnt(1);
 
 	}
 
 	function checkMatching(drw, number) {
 		try {
-			/*
+			/* 
 			const _drwNo = {
 				"drwNo": "1150",
 				"drwNoDate": "2024.12.14",

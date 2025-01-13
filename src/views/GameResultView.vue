@@ -61,7 +61,7 @@
 	const drwStore = useDrwStore();
 
 	// 회차 목록 (numbers 데이터에서 회차 정보만 추출)
-	const drwNumbers = computed(() => drwStore.numbers.map(item => ({
+	const drwNumbers = computed(() => drwStore.getNumbers().map(item => ({
 		drwNo: item.drwNo,
 		drwNoDate: item.drwNoDate,
 	})));

@@ -37,11 +37,11 @@
 	// 연속 미등장 횟수 분석
 	function getAppearInSuccessionUntil(){
 		// 현재까지 연속 미등장 횟수 가져오기
-		const _statsArray = drwStore.getNotAppearInSuccessionUntil(drwStore.numbers);
+		const _statsArray = drwStore.getNotAppearInSuccessionUntil(drwStore.getNumbers());
 		_statsArray.sort((a, b) => b.count - a.count);
 
 		// 연속으로 미등장한 횟수 가져오기
-		const _notAppearInSuccession = drwStore.getNotAppearInSuccession(drwStore.numbers);
+		const _notAppearInSuccession = drwStore.getNotAppearInSuccession(drwStore.getNumbers());
 		// 연속으로 미등장한 횟수중 가장 많이 미등장한 횟수
 		// 연속 140 미등장한 번호는 고정번호로 추천
 		const _cnt = 140;//_notAppearInSuccession[0].count;
@@ -73,7 +73,7 @@
 
 		// 최근 100회 동안 가장 많이 나왔던 횟수 25, 가장 적게 나왔던 횟수 5
 		// 5번 이하로 나온 번호는 고정번호로 추천
-		let _lastNumbers = drwStore.numbers.slice(0,100);
+		let _lastNumbers = drwStore.getNumbers().slice(0,100);
 
 		_totalAppear = drwStore.getTotalAppear(_lastNumbers);
 		_totalAppear.sort((a, b) => b.count - a.count);

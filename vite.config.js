@@ -2,6 +2,7 @@ import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import { viteMockServe } from 'vite-plugin-mock';
 
 
 // https://vite.dev/config/
@@ -9,6 +10,11 @@ export default defineConfig({
   base: '', // 상대경로로 설정
   plugins: [
     vue(),
+    viteMockServe({
+      mockPath: 'mock', // 모의 API 파일 경로
+      localEnabled: command === 'serve', // 개발 환경에서만 활성화
+      logger: true, // 모의 API 호출 로깅
+    }),
   ],
   resolve: {
     alias: {

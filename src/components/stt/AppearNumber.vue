@@ -51,7 +51,7 @@
 
 	// 번호 등장 횟수 계산 함수
 	const calculateNumberStats = () => {
-		return drwStore.getTotalAppear(drwStore.numbers);
+		return drwStore.getTotalAppear(drwStore.getNumbers());
 	};
 
 	// 번호별 등장 횟수를 반응형 데이터로 관리 (내림차순 정렬 추가)

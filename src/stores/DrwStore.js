@@ -5,7 +5,7 @@ import {
 export const useDrwStore = defineStore('drwStore', {
 	state: () => ({
 		numbers: [
-			/**/
+			/*
 			{
 				"drwNo": "1153",
 				"drwNoDate": "2025.01.04",
@@ -53,7 +53,7 @@ export const useDrwStore = defineStore('drwStore', {
 				"drwtNo6": "45",
 				"bnusNo": "25"
 			},
-			
+			*/
 			{
 				"drwNo": "1149",
 				"drwNoDate": "2024.12.07",
@@ -12700,6 +12700,9 @@ export const useDrwStore = defineStore('drwStore', {
 		setNumbers(numbers) {
 			this.numbers = numbers; // 선택된 번호를 저장
 		},
+		getNumbers() {
+			return this.numbers;
+		},
 		getDrwNo(no) {
 			return this.numbers.find(item => Number(item.drwNo) === Number(no));
 		},
@@ -12722,12 +12725,12 @@ export const useDrwStore = defineStore('drwStore', {
 			})); // 번호와 등장 횟수를 객체로 반환
 		},
 		// 연속 등장 횟수를 계산하는 함수
-		getAppearInSuccession(draws) {
+		getAppearInSuccession(numbers) {
 			const consecutiveCounts = Array(45).fill(0).map(() => 0); // 번호별 최대 연속 등장 횟수
 			const currentConsecutive = Array(45).fill(0); // 번호별 현재 연속 등장 횟수
 
 			// 각 회차의 당첨 번호 순회
-			draws.forEach((item) => {
+			numbers.forEach((item) => {
 				for (let i = 1; i <= 45; i++) {
 					if (
 						Number(item.drwtNo1) === i ||

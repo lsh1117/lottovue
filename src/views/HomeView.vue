@@ -35,17 +35,26 @@
 				</div>
 			</div>
 		</section>
+		<section class="section section-area fixed-bottom">
+			<div class="btn-area btn-area-center">
+				<button class="btn-primary btn-large" @click="goLogin" >로그인</button>
+			</div>
+		</section>
 	</div>
 </template>
 
 <script setup>
 	import {onMounted,ref,computed} from "vue";
 	import {useDrwStore} from "@/stores/DrwStore";
+	import { useRoute, useRouter } from 'vue-router';
+
+	const route = useRoute();
+	const router = useRouter();
 
 	// Pinia store 가져오기
 	const drwStore = useDrwStore();
 
-	const result = ref(drwStore.numbers[0]);
+	const result = ref(drwStore.getNumbers()[0]);
 
 	//console.log("@@@@@@@@@@",result);
 
@@ -63,6 +72,10 @@
 	function getGroup(number) {
 		// (number - 1)을 10으로 나누고 1을 더해 그룹 계산
 		return Math.floor((number - 1) / 10) + 1;
+	}
+
+	function goLogin(){
+		router.push({ path: '/login' });
 	}
 
 </script>

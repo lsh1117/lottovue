@@ -8,7 +8,9 @@ export const useRecommendStore = defineStore('recommendStore', {
 		// 컬랙션 타입 object
 		// 회차별 컬랙션 데이터 numbers(추천 받은 번호 배열), drw ( 회차 ) : {recommends:[], drw:0000}
 
-		collections: [{
+		collections: [
+			/*
+			{
 				"drw": '1150',
 				"numbers": [{
 					"number": 6
@@ -4808,7 +4810,7 @@ export const useRecommendStore = defineStore('recommendStore', {
 					"number": 32
 				}]
 			},
-
+			*/
 		],
 	}),
 	actions: {
