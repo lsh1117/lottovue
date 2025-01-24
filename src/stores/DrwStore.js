@@ -4,7 +4,20 @@ import {
 
 export const useDrwStore = defineStore('drwStore', {
 	state: () => ({
-		numbers: [{
+		numbers: [
+			/**/
+			{
+				"drwNo": "1155",
+				"drwNoDate": "2025.01.18",
+				"drwtNo1": "10",
+				"drwtNo2": "16",
+				"drwtNo3": "19",
+				"drwtNo4": "27",
+				"drwtNo5": "37",
+				"drwtNo6": "38",
+				"bnusNo": "13"
+			},
+			{
 				"drwNo": "1154",
 				"drwNoDate": "2025.01.11",
 				"drwtNo1": "4",
@@ -14,7 +27,8 @@ export const useDrwStore = defineStore('drwStore', {
 				"drwtNo5": "32",
 				"drwtNo6": "38",
 				"bnusNo": "27"
-			},{
+			},
+			{
 				"drwNo": "1153",
 				"drwNoDate": "2025.01.04",
 				"drwtNo1": "1",
@@ -25,6 +39,7 @@ export const useDrwStore = defineStore('drwStore', {
 				"drwtNo6": "44",
 				"bnusNo": "5"
 			},
+			
 			{
 				"drwNo": "1152",
 				"drwNoDate": "2024.12.28",
@@ -36,6 +51,7 @@ export const useDrwStore = defineStore('drwStore', {
 				"drwtNo6": "37",
 				"bnusNo": "5"
 			},
+			
 			{
 				"drwNo": "1151",
 				"drwNoDate": "2024.12.21",
@@ -47,6 +63,7 @@ export const useDrwStore = defineStore('drwStore', {
 				"drwtNo6": "29",
 				"bnusNo": "8"
 			},
+			
 			{
 				"drwNo": "1150",
 				"drwNoDate": "2024.12.14",
@@ -58,6 +75,7 @@ export const useDrwStore = defineStore('drwStore', {
 				"drwtNo6": "45",
 				"bnusNo": "25"
 			},
+			
 			{
 				"drwNo": "1149",
 				"drwNoDate": "2024.12.07",
@@ -69,6 +87,7 @@ export const useDrwStore = defineStore('drwStore', {
 				"drwtNo6": "36",
 				"bnusNo": "38"
 			},
+			
 			{
 				"drwNo": "1148",
 				"drwNoDate": "2024.11.30",
@@ -12703,13 +12722,13 @@ export const useDrwStore = defineStore('drwStore', {
 		setNumbers(numbers) {
 			this.numbers = numbers; // 선택된 번호를 저장
 		},
-		getNumbers(){
-			return this.numbers;
-		},
 		getDrwNo(no) {
 			return this.numbers.find(item => Number(item.drwNo) === Number(no));
 		},
-		getTotalAppear(numbers) {
+		getNumbers() {
+			return this.numbers;
+		},
+		getTotalAppear(numbers){
 			const stats = Array(45).fill(0); // 1~45의 초기 등장 횟수 (0으로 초기화)
 
 			numbers.forEach((item) => {
@@ -12796,7 +12815,7 @@ export const useDrwStore = defineStore('drwStore', {
 						}
 					});
 				} catch (e) {
-					console.log("loop end : ", e.message);
+					//console.log("loop end : ", e.message);
 				}
 			}
 
@@ -12874,7 +12893,7 @@ export const useDrwStore = defineStore('drwStore', {
 						}
 					});
 				} catch (e) {
-					console.log("loop end : ", e.message);
+					//console.log("loop end : ", e.message);
 				}
 			}
 
@@ -12961,7 +12980,7 @@ export const useDrwStore = defineStore('drwStore', {
 						}
 					});
 				} catch (e) {
-					console.log("loop end : ", e.message);
+					//console.log("loop end : ", e.message);
 				}
 			}
 
@@ -12983,7 +13002,7 @@ export const useDrwStore = defineStore('drwStore', {
 			// 각 회차의 당첨 번호 순회
 			numbers.forEach((draw) => {
 				for (let i = 1; i <= 5; i++) {
-
+					
 					const currentDrawNumbers = [
 						getGroup(Number(draw.drwtNo1)),
 						getGroup(Number(draw.drwtNo2)),
@@ -13044,7 +13063,7 @@ export const useDrwStore = defineStore('drwStore', {
 						}
 					});
 				} catch (e) {
-					console.log("loop end : ", e.message);
+					//console.log("loop end : ", e.message);
 				}
 			}
 
@@ -13060,7 +13079,7 @@ export const useDrwStore = defineStore('drwStore', {
 
 			// 그룹(색상) 계산 함수
 			const getGroup = function (number) {
-				return number % 2;
+				return number%2;
 			}
 
 			// 각 회차의 당첨 번호 순회
@@ -13099,7 +13118,7 @@ export const useDrwStore = defineStore('drwStore', {
 
 			// 짝수홀수 계산 함수
 			const getGroup = function (number) {
-				return number % 2;
+				return number%2;
 			}
 
 			for (let i = 0; i < 2; i++) {
@@ -13124,7 +13143,7 @@ export const useDrwStore = defineStore('drwStore', {
 						}
 					});
 				} catch (e) {
-					console.log("loop end : ", e.message);
+					//console.log("loop end : ", e.message);
 				}
 			}
 
@@ -13140,7 +13159,7 @@ export const useDrwStore = defineStore('drwStore', {
 
 			// 그룹(색상) 계산 함수
 			const getGroup = function (number) {
-				return number % 2;
+				return number%2;
 			}
 
 			// 각 회차의 당첨 번호 순회
@@ -13179,7 +13198,7 @@ export const useDrwStore = defineStore('drwStore', {
 
 			// 짝수홀수 계산 함수
 			const getGroup = function (number) {
-				return number % 2;
+				return number%2;
 			}
 
 			for (let i = 0; i < 2; i++) {
@@ -13204,7 +13223,7 @@ export const useDrwStore = defineStore('drwStore', {
 						}
 					});
 				} catch (e) {
-					console.log("loop end : ", e.message);
+					//console.log("loop end : ", e.message);
 				}
 			}
 

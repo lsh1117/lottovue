@@ -39,7 +39,7 @@
 	const _fixedNumber = fixedStore.numbers;
 
 	// 다음 회차 번호
-	const _nextDrw = Number(drwStore.getNumbers()[0].drwNo) + 1;
+	const _nextDrw = Number(drwStore.numbers[0].drwNo) + 1;
 
 	// 번호뽑기시 삭제해야 할 번호. ( 제외번호+고정번호 )
 	const _exc = _exceptionNumber.concat(_fixedNumber);
@@ -57,7 +57,7 @@
 	const recommends = ref([]);
 
 	// 추천 번호 갯수 정의
-	const _recommendCnt = 1000;
+	const _recommendCnt = 100;
 	
 	for( let j=0;j<_recommendCnt;j++){
 		let _list = [..._newTotalNumbers];
