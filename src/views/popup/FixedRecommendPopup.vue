@@ -32,6 +32,10 @@
 		if(_message2){
 			messages.value.push(_message2);
 		}
+
+		if(_message1 === null && _message2 === null){
+			messages.value.push('이번주 추천 고정번호는 없음.')
+		}
 	});
 	
 	// 연속 미등장 횟수 분석
@@ -87,8 +91,14 @@
 		_max = _totalAppear[0];
 		_min = _totalAppear[44];
 
-		const _message = _fixeds.join() + " : 최근 100회동안 " + _min.count + "번 등장으로 적게 나왔음.";
-		return _message;
+		let _message ='';
+		if(_fixeds.length > 0){
+			_message = _fixeds.join() + " : 최근 100회동안 " + _min.count + "번 등장으로 적게 나왔음.";
+			return _message;
+		}
+		else{
+			return null;
+		}
 	}
 </script>
 

@@ -7,6 +7,28 @@ export const useDrwStore = defineStore('drwStore', {
 		numbers: [
 			/**/
 			{
+				"drwNo": "1158",
+				"drwNoDate": "2025.02.08",
+				"drwtNo1": "21",
+				"drwtNo2": "25",
+				"drwtNo3": "27",
+				"drwtNo4": "32",
+				"drwtNo5": "37",
+				"drwtNo6": "38",
+				"bnusNo": "20"
+			},
+			{
+				"drwNo": "1157",
+				"drwNoDate": "2025.02.01",
+				"drwtNo1": "5",
+				"drwtNo2": "7",
+				"drwtNo3": "12",
+				"drwtNo4": "20",
+				"drwtNo5": "25",
+				"drwtNo6": "26",
+				"bnusNo": "28"
+			},
+			{
 				"drwNo": "1156",
 				"drwNoDate": "2025.01.25",
 				"drwtNo1": "30",
