@@ -5,7 +5,39 @@ import {
 export const useDrwStore = defineStore('drwStore', {
 	state: () => ({
 		numbers: [
-			/**/
+			{
+				"drwNo": "1161",
+				"drwNoDate": "2025.03.01",
+				"drwtNo1": "2",
+				"drwtNo2": "12",
+				"drwtNo3": "20",
+				"drwtNo4": "24",
+				"drwtNo5": "34",
+				"drwtNo6": "42",
+				"bnusNo": "37"
+			},
+			{
+				"drwNo": "1160",
+				"drwNoDate": "2025.02.22",
+				"drwtNo1": "7",
+				"drwtNo2": "13",
+				"drwtNo3": "18",
+				"drwtNo4": "36",
+				"drwtNo5": "39",
+				"drwtNo6": "45",
+				"bnusNo": "19"
+			},
+			{
+				"drwNo": "1159",
+				"drwNoDate": "2025.02.15",
+				"drwtNo1": "3",
+				"drwtNo2": "9",
+				"drwtNo3": "27",
+				"drwtNo4": "28",
+				"drwtNo5": "38",
+				"drwtNo6": "39",
+				"bnusNo": "7"
+			},
 			{
 				"drwNo": "1158",
 				"drwNoDate": "2025.02.08",

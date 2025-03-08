@@ -281,19 +281,19 @@
 
 	function checkMatching(drw, number) {
 		try {
-			/* 
-			const _drwNo = {
-				"drwNo": "1150",
-				"drwNoDate": "2024.12.14",
-				"drwtNo1": "8",
-				"drwtNo2": "9",
-				"drwtNo3": "18",
-				"drwtNo4": "35",
-				"drwtNo5": "39",
-				"drwtNo6": "45",
-				"bnusNo": "25"
-			}
-			*/
+			
+			// const _drwNo = {
+			// 	"drwNo": "1160",
+			// 	"drwNoDate": "2025.02.22",
+			// 	"drwtNo1": "7",
+			// 	"drwtNo2": "13",
+			// 	"drwtNo3": "18",
+			// 	"drwtNo4": "36",
+			// 	"drwtNo5": "39",
+			// 	"drwtNo6": "45",
+			// 	"bnusNo": "19"
+			// }
+		
 			const _drwNo = drwStore.getDrwNo(drw);
 			const _numbers = [
 				Number(_drwNo.drwtNo1),
@@ -316,19 +316,17 @@
 
 	function checkNo2(drw, number) {
 		try {
-			/*
-			const _drwNo = {
-				"drwNo": "1150",
-				"drwNoDate": "2024.12.14",
-				"drwtNo1": "8",
-				"drwtNo2": "9",
-				"drwtNo3": "18",
-				"drwtNo4": "35",
-				"drwtNo5": "39",
-				"drwtNo6": "45",
-				"bnusNo": "25"
-			}
-			*/
+			// const _drwNo = {
+			// 	"drwNo": "1160",
+			// 	"drwNoDate": "2025.02.22",
+			// 	"drwtNo1": "7",
+			// 	"drwtNo2": "13",
+			// 	"drwtNo3": "18",
+			// 	"drwtNo4": "36",
+			// 	"drwtNo5": "39",
+			// 	"drwtNo6": "45",
+			// 	"bnusNo": "19"
+			// }
 			const _drwNo = drwStore.getDrwNo(drw);
 
 			console.log("### 2등 체크 여부 보너스 번호 : ", Number(_drwNo.bnusNo))

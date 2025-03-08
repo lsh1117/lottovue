@@ -57,7 +57,7 @@
 	const recommends = ref([]);
 
 	// 추천 번호 갯수 정의
-	const _recommendCnt = 100;
+	const _recommendCnt = 20;
 	
 	for( let j=0;j<_recommendCnt;j++){
 		let _list = [..._newTotalNumbers];
