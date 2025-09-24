@@ -36,6 +36,12 @@
         background-repeat: no-repeat;
         text-indent: -10000px;
     }
+
+    &:disabled{
+        @include themeProperty(color, color-text-disabled);
+        @include themeProperty(background-color, color-button-gray-primary-disabled);
+        pointer-events: none;
+    }
 }
 
 .btn-area{

@@ -2,24 +2,24 @@ import {
 	defineStore
 } from 'pinia'
 
-export const useRecommendStore = defineStore('recommendStore', {
+export const useMyPickStore = defineStore('MyPickStore', {
 	state: () => ({
 		// 추천 받은 번호 컬랙션
 		// 컬랙션 타입 object
-		// 회차별 컬랙션 데이터 numbers(추천 받은 번호 배열), drw ( 회차 ) : {recommends:[], drw:0000}
+		// 회차별 컬랙션 데이터 numbers(추천 받은 번호 배열), drw ( 회차 ) : {MyPicks:[], drw:0000}
 
 		collections: [
 		],
 	}),
 	actions: {
-		addRecommend(numbers, drw) {
-			const _recommendObj = {
+		addMyPick(numbers, drw) {
+			const _MyPickObj = {
 				"numbers": numbers,
 				"writeDate": getFormattedDate(),
 				"drw": drw
 			}
 
-			this.collections.push(_recommendObj);
+			this.collections.push(_MyPickObj);
 
 			function getFormattedDate() {
 				const now = new Date(); // 현재 시간 가져오기
@@ -30,18 +30,18 @@ export const useRecommendStore = defineStore('recommendStore', {
 				return `${year}.${month}.${date}`; // 형식에 맞게 조합
 			}
 		},
-		getRecommends(drw) {
-			let _recommends = [];
+		getMyPicks(drw) {
+			let _MyPicks = [];
 			this.collections.forEach((item) => {
 				if (drw === undefined) {
-					_recommends.push(item);
+					_MyPicks.push(item);
 				} else {
 					if (Number(item.drw) === Number(drw)) {
-						_recommends.push(item);
+						_MyPicks.push(item);
 					}
 				}
 			});
-			return _recommends;
+			return _MyPicks;
 		},
 		getDrwList() {
 			let _list = [];

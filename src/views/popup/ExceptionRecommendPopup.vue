@@ -9,6 +9,7 @@
 		</div>
 		<div class="btn-area btn-area-center">
 			<button class="btn-primary btn-small" @click="$emit('close')">닫기</button>
+			<button class="btn-primary btn-small" @click="onAllApply">전체적용</button>
 		</div>
 	</div>
 </template>
@@ -16,10 +17,16 @@
 <script setup>
 	import {onMounted,ref} from "vue";
 	import {useDrwStore} from '@/stores/DrwStore';
+	import { useExceptionStore } from "@/stores/ExceptionStore";
 
 	// Pinia store 가져오기
 	const drwStore = useDrwStore();
+	const exceptionStore = useExceptionStore();
 	const messages = ref([]);
+	const exceptionNumbers = ref([]);
+
+	// Emit 이벤트 정의
+	const emit = defineEmits(["close"]);
 
 	onMounted(()=>{
 		const _message1 = getAppearInSuccessionUntil();
@@ -43,6 +50,7 @@
 		appearInSuccessionUntil.forEach((item) => {
 			if(item.count > 1){
 				thirdAppears.push(item.number);
+				exceptionNumbers.value.push(item.number);
 			}
 		});
 
@@ -114,6 +122,7 @@
 		_totalAppear.forEach(item=>{
 			if(Number(item.count) > 19){
 				_exceptions.push(item.number);
+				exceptionNumbers.value.push(item.number);
 			}
 		})
 
@@ -122,6 +131,12 @@
 
 		const _message = _exceptions.join() + " : 최근 100회동안 " + "20번 이상 등장으로 많이 나왔음.";
 		return _message;
+	}
+
+	function onAllApply(){
+		exceptionStore.setNumbers(exceptionNumbers.value);
+		// 팝업 닫기 이벤트 emit
+		emit("close");
 	}
 
 </script>

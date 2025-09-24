@@ -23,7 +23,7 @@ label{
         }
     }
     &.label-medium{
-        @include text-B2-Bold(color-text-primary);
+        @include text-B1-Bold(color-text-primary);
     }
 }
 

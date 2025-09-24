@@ -162,7 +162,6 @@ time, mark, audio, video, button {
   padding: 0;
   border: 0;
   vertical-align: baseline;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   word-break: normal;
 }
@@ -170,8 +169,7 @@ time, mark, audio, video, button {
 input, select, textarea {
   margin: 0;
   padding: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 textarea {
@@ -302,7 +300,6 @@ select,
 textarea {
   -webkit-appearance: none;
   -moz-appearance: none;
-  -ms-appearance: none;
   -o-appearance: none;
   appearance: none;
   -webkit-border-radius: 0;
@@ -435,7 +432,7 @@ body[data-color-mode=dark] label.label-medium {
   line-height: 1.385;
   font-weight: 500;
   font-family: "Pretendard";
-  color: rgb(28, 211, 12);
+  color: rgb(226, 160, 69);
 }
 body[data-color-mode=dark] .text-description-medium {
   color: rgb(220, 220, 220);
@@ -493,25 +490,19 @@ body[data-color-mode=dark] .header-area {
 }
 
 .header-area h1 {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   width: 100%;
   height: 100%;
   padding: 0.5rem 0;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 .header-area h1 span {
   font-size: 1.4rem;
   line-height: 140%;
   font-weight: 700;
   font-family: "Pretendard";
-  color: rgb(28, 211, 12);
+  color: rgb(226, 160, 69);
 }
 body[data-color-mode=dark] .header-area h1 span {
   color: rgb(220, 220, 220);
@@ -521,11 +512,8 @@ body[data-color-mode=dark] .header-area h1 span {
   width: 100;
 }
 .header-area .gnb ul.gnb-list {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  justify-content: space-around;
   border-top: 1px solid #fff;
   border-bottom: 1px solid #fff;
   border-color: rgb(43, 43, 43);
@@ -568,17 +556,11 @@ body[data-color-mode=dark] .header-area .gnb ul.gnb-list li.gnb-item > .btn-gnb.
   background-color: #eee;
 }
 .footer-area .copyright-area {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   width: 100%;
   height: 100%;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 .footer-area .copyright-area p {
   font-size: 1.2rem;
@@ -664,30 +646,13 @@ body[data-color-mode=dark] .btn-close {
   background-image: url("/assets/images/light/common/ic_24_line_lg-close.svg");
 }
 
-.btn:disabled {
-  color: rgb(80, 80, 80);
-  background-color: rgb(227, 231, 235);
-  pointer-events: none;
-}
-body[data-color-mode=dark] .btn:disabled {
-  color: rgb(80, 80, 80);
-}
-
-body[data-color-mode=dark] .btn:disabled {
-  background-color: rgb(68, 75, 81);
-}
-
 .btn-area {
   margin-top: 20px;
   padding: 0;
 }
 .btn-area-center {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
   gap: 10px;
 }
 
@@ -728,8 +693,7 @@ body[data-color-mode=dark] .btn:disabled {
   top: 50%;
   width: calc(100% - 40px);
   margin-left: 20px;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
   border-radius: 20px;
   padding-bottom: 20px;
 }
@@ -802,8 +766,7 @@ body[data-color-mode=dark] .popup-container .popup-area .popup-overlay {
   height: 4rem;
   border-radius: 50%;
   border: 0.6rem solid transparent;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   border-color: rgb(43, 43, 43);
 }
 body[data-color-mode=dark] .checkbox-area input:checked + label::after {
@@ -865,12 +828,8 @@ body[data-color-mode=dark] .checkbox-area.ball-645.disabled label::after {
 }
 
 .select-area {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
 }
 .select-area label {
   width: 50%;
@@ -896,15 +855,9 @@ body[data-color-mode=dark] .select-area select {
 }
 
 .accordion .accordion-header {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: space-between;
+  align-items: center;
   padding: 10px 15px;
   cursor: pointer;
   background-color: rgb(24, 24, 24);
@@ -934,12 +887,8 @@ body[data-color-mode=dark] .accordion .accordion-body {
 }
 
 .chart .chart-bar {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   margin-bottom: 10px;
 }
 .chart .chart-bar .chart-bar-label {
@@ -1022,27 +971,14 @@ body[data-color-mode=dark] .box.box-round-bg {
 }
 
 .ball-area {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  gap: 1rem;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  display: block;
   margin: 0 auto;
 }
 .ball-area > ul.ball-list {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   gap: 1rem;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 .ball-area > ul.ball-list > li {
   display: block;
@@ -1054,15 +990,9 @@ body[data-color-mode=dark] .box.box-round-bg {
   width: 4rem;
   height: 4rem;
   border-radius: 4rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   font-size: 1.4rem;
   line-height: 140%;
   font-weight: 400;
@@ -1161,16 +1091,9 @@ body[data-color-mode=dark] .ball-even {
 }
 
 .nums {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  justify-content: center;
+  flex-direction: column;
 }
 .nums > .num-win {
   margin-top: 2rem;
@@ -1197,13 +1120,12 @@ body[data-color-mode=dark] .ball-even {
   left: 50%;
   top: -40px;
   content: "+";
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
   font-size: 2.5rem;
   line-height: 140%;
   font-weight: 700;
   font-family: "Pretendard";
-  color: rgb(28, 211, 12);
+  color: rgb(226, 160, 69);
 }
 body[data-color-mode=dark] .nums > .num-bonus::after {
   color: rgb(220, 220, 220);
@@ -1211,12 +1133,8 @@ body[data-color-mode=dark] .nums > .num-bonus::after {
 
 .list-basic {
   width: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
 }
 
 .recommend-list {
@@ -1236,15 +1154,9 @@ body[data-color-mode=dark] .message-error {
 }
 
 .ui-item {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: space-between;
+  align-items: center;
 }
 .ui-item__label {
   width: auto;
@@ -1416,4 +1328,4 @@ body[data-color-mode=dark] .table-item tr td span, body[data-color-mode=dark] .t
   position: absolute;
   top: -100000px;
   left: 0;
-}
+}/*# sourceMappingURL=app.css.map */

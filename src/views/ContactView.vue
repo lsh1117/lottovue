@@ -97,6 +97,7 @@
 
 	// 제외번호 닫기 핸들러.
 	function onExceptionPopupClose(e){
+		exceptionNumbers.value = [...exceptionStore.numbers];
 		//console.log("제외번호 닫기 핸들러 :",e);
 	}
 
@@ -112,6 +113,7 @@
 
 	// 추천 제외번호 닫기 핸들러.
 	function onExceptionRecommendPopupClose(e){
+		exceptionNumbers.value = [...exceptionStore.numbers];
 		//console.log("추천 제외번호 닫기 핸들러 :",e);
 	}
 

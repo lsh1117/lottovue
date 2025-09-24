@@ -1,7 +1,10 @@
 @charset "UTF-8";
 
 .ball-area{
-    display: block;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
     margin: 0 auto;
     >ul.ball-list{
         display: flex;

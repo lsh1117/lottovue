@@ -1,6 +1,6 @@
 <template>
 	<div class="HomeView">
-		<section class="section section-area">
+		<section class="section section-area" v-if="result && result.drwNo">
 			<div class="section-header">
 				<h4 class="title-big">
 					<strong>{{ result.drwNo }}회</strong> 당첨결과
@@ -35,17 +35,18 @@
 				</div>
 			</div>
 		</section>
-		<section class="section section-area fixed-bottom">
-			<div class="btn-area btn-area-center">
-				<button class="btn-primary btn-large" @click="goLogin" >로그인</button>
+		<section class="section section-area" v-else>
+			<div class="section-body">
+				<p class="text-description-medium" style="text-align: center;">데이터 없음</p>
 			</div>
 		</section>
 	</div>
 </template>
 
 <script setup>
-	import {onMounted,ref,computed} from "vue";
-	import {useDrwStore} from "@/stores/DrwStore";
+	import { onMounted, onBeforeUnmount, ref, computed } from "vue";
+	import { useDrwStore } from "@/stores/DrwStore";
+	import { drwData } from "@/assets/data/drw.js";
 	import { useRoute, useRouter } from 'vue-router';
 
 	const route = useRoute();
@@ -54,21 +55,18 @@
 	// Pinia store 가져오기
 	const drwStore = useDrwStore();
 
-	console.log(drwStore.getNumbers())
-
-	const result = ref(drwStore.getNumbers()[0]);
-
-	//console.log("@@@@@@@@@@",result);
-
-	// 당첨번호를 배열로 정리
-	const winningNumbers = [
-		result.value.drwtNo1,
-		result.value.drwtNo2,
-		result.value.drwtNo3,
-		result.value.drwtNo4,
-		result.value.drwtNo5,
-		result.value.drwtNo6,
-	];
+	const result = ref(null);
+	const winningNumbers = computed(() => {
+		if (!result.value) return []
+		return [
+			result.value.drwtNo1,
+			result.value.drwtNo2,
+			result.value.drwtNo3,
+			result.value.drwtNo4,
+			result.value.drwtNo5,
+			result.value.drwtNo6,
+		]
+	})
 
 	// 그룹(색상) 계산 함수
 	function getGroup(number) {
@@ -76,8 +74,36 @@
 		return Math.floor((number - 1) / 10) + 1;
 	}
 
-	function goLogin(){
-		router.push({ path: '/login' });
+
+	function setHome() {
+		const first = drwStore.getNumbers()[0]
+		result.value = first ? first : null
 	}
+
+	function onDrawsEvent(e) {
+		const draws = e.detail || []
+		// 숫자들은 안드로이드에서 number로 전달됩니다. DrwStore는 문자열/숫자 모두 처리 가능.
+		drwStore.setNumbers(draws);
+		setHome();
+	}
+	
+	onMounted(() => {
+		window.addEventListener('lottovue:draws', onDrawsEvent)
+		// 웹에서 독립 실행할 때(안드로이드 브리지 없음) 대비해 fallback도 가능:
+		if (window.AndroidBridge?.getDrawsJson) { 
+			const json = window.AndroidBridge.getDrawsJson()
+			const draws = JSON.parse(json || '[]')
+			drwStore.setNumbers(draws)
+			setHome()
+		} else {
+			// 안드로이드 브리지가 없으면 로컬 데이터 사용
+			drwStore.setNumbers(drwData)
+			setHome()
+		}
+	})
+
+	onBeforeUnmount(() => {
+		window.removeEventListener('lottovue:draws', onDrawsEvent)
+	})
 
 </script>

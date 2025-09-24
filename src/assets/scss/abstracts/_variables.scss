@@ -19,8 +19,9 @@ $theme:(
         /* 사용자 변수 */ 
         // color text
         color-text-primary : rgba(255, 255, 255, 1),
-        color-text-secondary : rgba(226, 160, 69, 1),
+        color-text-secondary : rgb(28, 211, 12),
         color-text-tertiary : rgb(2, 2, 2),
+        color-text-disabled : rgb(80, 80, 80),
         // color bg
         color-bg-primary:rgba(51, 51, 51, 1),
         color-bg-secondary:rgba(24, 24, 24, 1),
@@ -53,8 +54,8 @@ $theme:(
 
         // Primary Color
         color-primary-50: rgba(229, 244, 255, 1), // #E5F4FF
-        color-primary-300 :rgba(91, 171, 251, 1), // #5BABFB
-        color-primary-500 : rgba(37, 137, 244, 1), // #2589F4
+        color-primary-300 :rgb(91, 251, 104), // #5BABFB
+        color-primary-500 : rgb(34, 212, 43), // #2589F4
 
         // Primary Color - Common Color Default Color
         color-common-white: rgba(255, 255, 255, 1),
@@ -648,6 +649,7 @@ $theme:(
         color-text-primary : rgba(22,22,22,1),
         color-text-secondary : rgba(220,220,220,1),
         color-text-tertiary : rgba(22,22,22,1),
+        color-text-disabled : rgba(80, 80, 80, 1),
         // color bg
         color-bg-primary:rgba(255,255,255,1),
         color-bg-secondary:rgba(1, 10, 19,1),

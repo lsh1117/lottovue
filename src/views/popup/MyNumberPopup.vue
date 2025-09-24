@@ -30,7 +30,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr v-for="recommend in recommendList" :key="recommend">
+							<tr v-for="recommend in myPickList" :key="recommend">
 								<td><span>{{ recommend.drw }}</span><span>회</span></td>
 								<td>
 									<div class="ball-area">
@@ -43,7 +43,7 @@
 									</div>
 								</td>
 								<td v-if="recommend.result"><strong>{{recommend.no}}</strong><span>등</span></td>
-								<td v-else><span>추첨전</span></td>
+					<td v-else><span>미추첨</span></td>
 							</tr>
 						</tbody>
 					</table>
@@ -140,7 +140,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr v-for="recommend in recommendList" :key="recommend">
+							<tr v-for="recommend in myPickList" :key="recommend">
 								<td v-for="item in recommend.numbers" :key="item">
 									{{item.number}}
 								</td>
@@ -164,8 +164,8 @@
 		getCurrentInstance
 	} from "vue";
 	import {
-		useRecommendStore
-	} from "@/stores/RecommendStore";
+		useMyPickStore
+	} from "@/stores/MyPickStore";
 	import {
 		useDrwStore
 	} from "@/stores/DrwStore";
@@ -176,19 +176,19 @@
 
 	// 회차 정보
 	const drwStore = useDrwStore();
-	// 마지막 회차 번호
-	const _lastDrw = Number(drwStore.getNumbers()[0].drwNo);
+    // 마지막 회차 번호 (DrwStore에서 최신 회차)
+    const _lastDrw = Number(drwStore.getNumbers()[0].drwNo) + 1;
 
 	// 추천(뽑기)번호 정보
-	const recommendStore = useRecommendStore();
-	// 추천(뽑기)회차 리스트
-	const drwList = ref(recommendStore.getDrwList());
+	const myPickStore = useMyPickStore();
+    // 선택 가능한 회차 리스트: 1회부터 최신 회차까지
+    const drwList = ref([]);
 
-	// 선택된 회차 (기본값은 최신 회차로 설정)
-	const selectedDrwNo = ref(drwList.value[0]);
+    // 선택된 회차 (기본값은 최신 회차로 설정)
+    const selectedDrwNo = ref(_lastDrw);
 
 	// 추천(뽑기)번호 리스트
-	const recommendList = ref(recommendStore.getRecommends());
+	const myPickList = ref(myPickStore.getMyPicks());
 
 	const no1 = ref(0);
 	const no2 = ref(0);
@@ -207,7 +207,7 @@
 	}
 
 	// 회차 변경 시 결과 업데이트
-	function updateResult() {
+    async function updateResult() {
 		//console.log("##### 회차 변경 시 결과 업데이트 :", selectedDrwNo.value);
 		totalWon.value = 0;
 		no1.value = 0;
@@ -216,10 +216,27 @@
 		no4.value = 0;
 		no5.value = 0;
 		no6.value = 0;
-		recommendList.value = recommendStore.getRecommends(selectedDrwNo.value);
-		recommendList.value.forEach(item => {
-			// 회차 정보 마지막 회차와 추천번호 회차와 비교하여 마지막회차 보다 추천번호 회차가 높을경우 추천전 계산
-			if (Number(item.drw) > Number(_lastDrw) ) {
+        // 1) 안드로이드 저장 픽 불러오기
+        try {
+            const drwNo = Number(selectedDrwNo.value)
+            if (window.AndroidBridge && typeof window.AndroidBridge.getPicksJson === 'function') {
+                const json = window.AndroidBridge.getPicksJson(drwNo)
+                const picks = JSON.parse(json || '[]')
+                const converted = picks.map(p => ({
+                    drw: p.drwNo,
+                    numbers: [p.no1, p.no2, p.no3, p.no4, p.no5, p.no6].map(n => ({ number: Number(n) })),
+                }))
+                // 추천 목록 앞쪽에 내가 저장한 번호 우선 표시
+                myPickList.value = converted.concat(myPickStore.getMyPicks(selectedDrwNo.value))
+            } else {
+                myPickList.value = myPickStore.getMyPicks(selectedDrwNo.value)
+            }
+        } catch (_) {
+            myPickList.value = myPickStore.getMyPicks(selectedDrwNo.value)
+        }
+		myPickList.value.forEach(item => {
+			// 저장한 회차가 다음 추첨 회차(최신 회차 + 1) 이상이면 아직 미추첨 처리
+			if (Number(item.drw) >= Number(_lastDrw) ) {
 				// 결과 발표 안됨
 				item.result = false;
 				//console.log("결과 발표 안됨",item.drw)
@@ -396,9 +413,14 @@
 		*/
 	}
 
-	onMounted(() => {
-		updateResult();
-	});
+    onMounted(() => {
+        // 1 ~ 마지막 회차까지 생성 (오름차순)
+        const list = [];
+        for (let i = 1; i <= _lastDrw; i++) list.push(i);
+        drwList.value = list.reverse(); // 최신 회차가 위에 오도록 내림차순 정렬
+        selectedDrwNo.value = _lastDrw;
+        updateResult();
+    });
 </script>
 
 <style scoped>
