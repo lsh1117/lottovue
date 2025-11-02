@@ -679,11 +679,11 @@ body[data-color-mode=dark] .btn-primary {
   border-radius: 0.5rem;
   background-color: rgb(51, 51, 51);
 }
-.btn-secondary.span {
-  color: rgb(255, 255, 255);
+.btn-secondary > span {
+  color: rgb(255, 255, 255) !important;
 }
-body[data-color-mode=dark] .btn-secondary.span {
-  color: #16181a;
+body[data-color-mode=dark] .btn-secondary > span {
+  color: #16181a !important;
 }
 
 body[data-color-mode=dark] .btn-secondary {
