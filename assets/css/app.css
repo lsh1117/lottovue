@@ -522,7 +522,12 @@ body[data-color-mode=dark] .header-area h1 span {
   align-items: center;
 }
 .header-area .header-right {
-  width: 2.4rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5rem;
+  line-height: 1;
+  width: 8rem;
   height: 2.4rem;
 }
 .header-area .header-right .account-btn {
@@ -553,16 +558,27 @@ body[data-color-mode=dark] .header-area h1 span {
   width: 14px;
   height: 14px;
 }
-.header-area .premium-badge,
-.header-area .free-badge {
-  font-size: 1.2rem;
-  color: #a0a0a0;
-  display: inline-flex;
-  align-items: center;
-}
 .header-area .premium-badge {
-  color: #ffd700;
-  filter: drop-shadow(0 0 2px rgba(255, 215, 0, 0.5));
+  color: transparent;
+  background: transparent;
+  border: none;
+}
+.header-area .premium-badge .premium-icon {
+  width: 64px;
+  height: 24px;
+  display: block;
+  filter: drop-shadow(0 2px 4px rgba(255, 215, 0, 0.4));
+}
+.header-area .free-badge {
+  color: transparent;
+  background: transparent;
+  border: none;
+}
+.header-area .free-badge .free-icon {
+  width: 64px;
+  height: 24px;
+  display: block;
+  filter: drop-shadow(0 2px 4px rgba(76, 175, 80, 0.3));
 }
 
 .gnb-area {
