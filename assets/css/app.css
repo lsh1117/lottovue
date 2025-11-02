@@ -677,8 +677,13 @@ body[data-color-mode=dark] .btn-primary {
 .btn-secondary {
   display: block;
   border-radius: 0.5rem;
+  color: rgb(255, 255, 255);
   background-color: rgb(51, 51, 51);
 }
+body[data-color-mode=dark] .btn-secondary {
+  color: #16181a;
+}
+
 body[data-color-mode=dark] .btn-secondary {
   background-color: rgb(255, 255, 255);
 }
